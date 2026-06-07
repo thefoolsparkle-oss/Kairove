@@ -1,0 +1,74 @@
+{
+  "understanding_report_id": "understanding_000075",
+  "source_id": "source_000080",
+  "evidence_observation_id": "evidenceobs_000001",
+  "summary": "Evidence-limited understanding for bilibili source: 这4款最强 AI视频 总结神器竟然全都免费！【建议收藏】看 视频 必备！支持 B站 、 YouTube 、本地 视频 等",
+  "content_type_guess": [
+    "ordinary_ai_video_format_candidate",
+    "video"
+  ],
+  "text_signals": {
+    "title_keywords": [
+      "这4款最强",
+      "AI视频",
+      "总结神器竟然全都免费",
+      "【建议收藏】看",
+      "视频",
+      "必备",
+      "支持",
+      "B站",
+      "、",
+      "YouTube",
+      "、本地",
+      "视频",
+      "等"
+    ],
+    "description_keywords": [
+      "喜欢的朋友可以三连+关注支持一下",
+      "这对我帮助很大～"
+    ],
+    "visible_text": [
+      "这4款最强 AI视频 总结神器竟然全都免费！【建议收藏】看 视频 必备！支持 B站 、 YouTube 、本地 视频 等",
+      "喜欢的朋友可以三连+关注支持一下，这对我帮助很大～"
+    ],
+    "transcript_summary": null
+  },
+  "visual_signals": {
+    "style_guess": "unknown_until_cover_or_frames_are_inspected",
+    "subject_guess": "unknown_until_cover_or_frames_are_inspected",
+    "subtitle_style_guess": "unknown_until_screenshot_or_frames",
+    "ai_generated_likelihood": null,
+    "cover_url": "https://i2.hdslb.com/bfs/archive/8c2f58f782c998f194d1900fbe167ab23efeda40.jpg"
+  },
+  "audio_signals": {
+    "has_music": null,
+    "music_or_sound_role": "unknown_from_metadata_only",
+    "beat_or_hook_notes": []
+  },
+  "story_or_format_clues": {
+    "roles": [
+      "unknown_from_metadata_only"
+    ],
+    "beats": [],
+    "hook": "title/description may suggest a topic hook; video structure is not viewed yet",
+    "punchline": null,
+    "repeatable_parts": [
+      "topic angle only"
+    ]
+  },
+  "confidence": 0.52,
+  "missing_inputs": [
+    "page_screenshot",
+    "video_frames",
+    "transcript",
+    "comments",
+    "audio_metadata",
+    "full_video_content"
+  ],
+  "understanding_limits": [
+    "No full video viewing is claimed.",
+    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+    "Format inference must remain weak until richer evidence exists."
+  ],
+  "created_at": "2026-06-07T09:31:02.577151Z"
+}

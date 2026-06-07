@@ -1,0 +1,29 @@
+Create an AI video candidate for: P0-B 普通AI视频生产链测试
+
+Goal:
+# Semantic Transfer Brief
+
+- Job: job_000001
+- Source: source_000001
+- Goal: 普通AI视频格式种子：近期很多视频围绕嘴硬情侣/反差短剧结构进行演绎，目标是迁移成可替换角色和画风的普通AI视频。
+- Target style: ordinary AI format adaptation
+
+## Keep
+
+- Keep the format logic and audience expectation.
+- Keep the emotional or comedic function of each beat.
+- Keep platform-native pacing, but do not lock duration to a fixed number.
+
+## Change
+
+- Replace concrete characters, world, and visual setting with the selected production style.
+- Avoid copying personal-creator material directly unless user review approves it.
+- Use generated/local/official assets according to policy.
+
+## P0-B Limitation
+
+This brief is a visible scaffold. Later phases will let Format Miner, Trend Analyst, Script Council, AssetResolver, RoutePlanner, and QA councils expand it.
+
+
+Production style:
+ordinary AI video format adaptation. Preserve the format logic, change concrete characters/world/setting as needed, and keep pacing suitable to the source.

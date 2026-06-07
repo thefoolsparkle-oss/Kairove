@@ -1,0 +1,70 @@
+{
+  "understanding_report_id": "understanding_000076",
+  "source_id": "source_000081",
+  "evidence_observation_id": "evidenceobs_000002",
+  "summary": "Evidence-limited understanding for bilibili source: 2026年全网最强免费 视频 下载工具，支持8k分辨率和 B站Youtube 等各大平台，小白易上手（手机、电脑、网页）均可用",
+  "content_type_guess": [
+    "ordinary_ai_video_format_candidate",
+    "video"
+  ],
+  "text_signals": {
+    "title_keywords": [
+      "2026年全网最强免费",
+      "视频",
+      "下载工具",
+      "支持8k分辨率和",
+      "B站Youtube",
+      "等各大平台",
+      "小白易上手（手机、电脑、网页）均可用"
+    ],
+    "description_keywords": [
+      "有问题欢迎在评论区留言",
+      "我会一一回复",
+      "👍",
+      "喜欢的话记得三连支持一下呀～"
+    ],
+    "visible_text": [
+      "2026年全网最强免费 视频 下载工具，支持8k分辨率和 B站Youtube 等各大平台，小白易上手（手机、电脑、网页）均可用",
+      "有问题欢迎在评论区留言，我会一一回复！ 👍 喜欢的话记得三连支持一下呀～！"
+    ],
+    "transcript_summary": null
+  },
+  "visual_signals": {
+    "style_guess": "unknown_until_cover_or_frames_are_inspected",
+    "subject_guess": "unknown_until_cover_or_frames_are_inspected",
+    "subtitle_style_guess": "unknown_until_screenshot_or_frames",
+    "ai_generated_likelihood": null,
+    "cover_url": "https://i0.hdslb.com/bfs/archive/408f9ca5e84b66bd0592865a6dde95beb1588396.jpg"
+  },
+  "audio_signals": {
+    "has_music": null,
+    "music_or_sound_role": "unknown_from_metadata_only",
+    "beat_or_hook_notes": []
+  },
+  "story_or_format_clues": {
+    "roles": [
+      "unknown_from_metadata_only"
+    ],
+    "beats": [],
+    "hook": "title/description may suggest a topic hook; video structure is not viewed yet",
+    "punchline": null,
+    "repeatable_parts": [
+      "topic angle only"
+    ]
+  },
+  "confidence": 0.52,
+  "missing_inputs": [
+    "page_screenshot",
+    "video_frames",
+    "transcript",
+    "comments",
+    "audio_metadata",
+    "full_video_content"
+  ],
+  "understanding_limits": [
+    "No full video viewing is claimed.",
+    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+    "Format inference must remain weak until richer evidence exists."
+  ],
+  "created_at": "2026-06-07T09:31:02.594139Z"
+}

@@ -1,0 +1,55 @@
+{
+  "observation_id": "fmtobs_000015",
+  "run_id": "run_000020",
+  "candidate_format_name": "ordinary_ai_short_format_transfer_watchlist",
+  "evidence_sources": [
+    "source_000080",
+    "source_000081",
+    "source_000082",
+    "source_000083",
+    "source_000084",
+    "source_000085",
+    "source_000086",
+    "source_000087",
+    "source_000088",
+    "source_000089"
+  ],
+  "evidence_observation_ids": [
+    "evidenceobs_000001",
+    "evidenceobs_000002",
+    "evidenceobs_000003",
+    "evidenceobs_000004",
+    "evidenceobs_000005",
+    "evidenceobs_000006",
+    "evidenceobs_000007",
+    "evidenceobs_000008",
+    "evidenceobs_000009",
+    "evidenceobs_000010"
+  ],
+  "understanding_report_ids": [
+    "understanding_000075",
+    "understanding_000076",
+    "understanding_000077",
+    "understanding_000078",
+    "understanding_000079",
+    "understanding_000080",
+    "understanding_000081",
+    "understanding_000082",
+    "understanding_000083",
+    "understanding_000084"
+  ],
+  "shared_signals": [
+    "metadata-visible short-video topic",
+    "format function still needs page/cover/frame viewing",
+    "evidence observation exists before understanding"
+  ],
+  "possible_routes": [
+    "ordinary_ai_format_video",
+    "script_council_later",
+    "character_reenactment_later"
+  ],
+  "confidence_label": "weak_observation",
+  "confidence": 0.42,
+  "needs_more_sources": true,
+  "created_at": "2026-06-07T09:31:02.729623Z"
+}

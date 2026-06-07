@@ -1,0 +1,38 @@
+{
+  "run_id": "run_000012",
+  "platform": "fixture_search",
+  "url": "fixture://p1/search/abstract-ai-short-format",
+  "title": "AI video shorts trend format examples 2026 YouTube Shorts TikTok - repeated abstract AI short format discussion",
+  "author": "fixture_library",
+  "account": "fixture_library",
+  "content_type": "topic_page",
+  "source_type_guess": "search_result",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "published_at": null,
+  "collected_at": "2026-06-06T17:13:55.043899Z",
+  "query_used": "fixture query plan queryplan_000007",
+  "evidence_mode": "fixture",
+  "metadata_source": "fixture_library",
+  "live_results_claimed": false,
+  "confidence": 0.55,
+  "capability_gaps": [],
+  "requires_review": false,
+  "notes": "Fixture-backed broad web candidate shape; not live data.",
+  "discovery_reason": [
+    "fixture",
+    "query",
+    "fixture query plan queryplan_000007"
+  ],
+  "candidate_source_id": "sourcecand_000031",
+  "harvest_priority": 0.55,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:fixture"
+  ]
+}

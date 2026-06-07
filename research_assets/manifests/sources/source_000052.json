@@ -1,0 +1,68 @@
+{
+  "source_id": "source_000052",
+  "candidate_source_id": "sourcecand_000052",
+  "run_id": "run_000016",
+  "platform": "youtube",
+  "url": "https://www.youtube.com/watch?v=5SGxP0T59-Q",
+  "title": "How to create the viral AI baby videos #ai #artificialintelligence",
+  "author": "Nathan Hodgson",
+  "account": "Nathan Hodgson",
+  "source_type": "platform_user",
+  "content_type": "video",
+  "usage_policy": "analysis_only",
+  "review_status": "pending",
+  "harvest_status": "metadata_only_live",
+  "source_mode": "live_metadata",
+  "live_results_claimed": true,
+  "manual_entry": false,
+  "fixture": false,
+  "requires_review": true,
+  "files_available": {
+    "metadata": true,
+    "page_snapshot": false,
+    "raw_video": false,
+    "cover": false,
+    "screenshots": false,
+    "comments": false,
+    "transcript": false,
+    "audio_ref": false
+  },
+  "files": {
+    "metadata": "runs/run_000016/p1_research/source_candidates/sourcecand_000052.json",
+    "page_snapshot": null,
+    "raw_video": null,
+    "cover": null,
+    "screenshots": [],
+    "comments": null,
+    "transcript": null,
+    "audio_ref": null
+  },
+  "unavailable_evidence": [
+    "page_snapshot",
+    "raw_video",
+    "cover",
+    "screenshots",
+    "comments",
+    "transcript",
+    "audio_ref"
+  ],
+  "tool_setup_items_needed": [
+    "snapshot_or_browser_tool",
+    "comment_or_transcript_access",
+    "download_permission"
+  ],
+  "provenance": {
+    "source_url": "https://www.youtube.com/watch?v=5SGxP0T59-Q",
+    "platform": "youtube",
+    "collected_at": "2026-06-07T07:49:06.071780Z",
+    "query_used": "AI video shorts trend format examples 2026 YouTube Shorts TikTok AI shorts trend",
+    "metadata_source": "youtube_data_api_v3_search",
+    "used_by_run": "run_000016",
+    "what_was_saved": [
+      "structured_metadata"
+    ],
+    "why_saved": "P1 source intelligence metadata harvest."
+  },
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "created_at": "2026-06-07T07:49:06.071780Z"
+}

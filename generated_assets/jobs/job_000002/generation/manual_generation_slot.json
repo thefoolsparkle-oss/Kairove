@@ -1,0 +1,52 @@
+{
+  "slot_id": "manual_slot_000001",
+  "job_id": "job_000002",
+  "generation_step_type": "manual_generation_slot",
+  "status": "waiting_for_candidate",
+  "prompt_package": "generated_assets/jobs/job_000002/prompts/prompt_package_000001",
+  "input_assets": [
+    {
+      "source_id": "source_000002",
+      "candidate_source_id": "sourcecand_000002",
+      "run_id": "run_000002",
+      "job_id": "job_000002",
+      "mode": "text",
+      "value": "A recent ordinary AI short-video format seed for P0-B implementation verification",
+      "title": "P0-B Implementation Verification",
+      "author": "user",
+      "source_type": "user_provided",
+      "content_type": "text",
+      "provenance": {
+        "source_url": null,
+        "local_path": null,
+        "work_title": "P0-B Implementation Verification",
+        "character_or_asset_name": null,
+        "official_owner_or_account": null,
+        "usage": "format_reference",
+        "download_or_record_date": "2026-06-06T08:34:13.952662Z",
+        "linked_job": "job_000002",
+        "usage_mode": "direct_use"
+      },
+      "usage_policy": "direct_use",
+      "review_status": "not_required",
+      "used_for": [
+        "format observation",
+        "semantic transfer brief",
+        "prompt package"
+      ],
+      "created_at": "2026-06-06T08:34:13.952662Z"
+    }
+  ],
+  "positive_prompt": "generated_assets/jobs/job_000002/prompts/prompt_package_000001/positive_prompt.txt",
+  "negative_prompt": "generated_assets/jobs/job_000002/prompts/prompt_package_000001/negative_prompt.txt",
+  "parameters": "generated_assets/jobs/job_000002/prompts/prompt_package_000001/tool_parameters.json",
+  "expected_output_type": "video",
+  "quality_checks_after_import": [
+    "file exists",
+    "size > 0",
+    "supported video extension",
+    "basic semantic review scaffold"
+  ],
+  "inbox": "generated_assets/jobs/job_000002/manual_slots/manual_slot_000001/inbox",
+  "created_at": "2026-06-06T08:34:14.029177Z"
+}

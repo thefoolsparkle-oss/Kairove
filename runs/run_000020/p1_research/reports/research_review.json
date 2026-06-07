@@ -1,0 +1,31 @@
+{
+  "run_id": "run_000020",
+  "goal": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts",
+  "query_plan_id": "queryplan_000015",
+  "candidate_count": 10,
+  "source_count": 10,
+  "evidence_observation_count": 10,
+  "evidence_observation_ids": [
+    "evidenceobs_000001",
+    "evidenceobs_000002",
+    "evidenceobs_000003",
+    "evidenceobs_000004",
+    "evidenceobs_000005",
+    "evidenceobs_000006",
+    "evidenceobs_000007",
+    "evidenceobs_000008",
+    "evidenceobs_000009",
+    "evidenceobs_000010"
+  ],
+  "format_observation_ids": [
+    "fmtobs_000015"
+  ],
+  "opportunity_ids": [
+    "opp_000015"
+  ],
+  "live_results_claimed": true,
+  "live_candidate_count": 10,
+  "fixture_candidate_count": 0,
+  "mode": "auto",
+  "created_at": "2026-06-07T09:31:02.747275Z"
+}

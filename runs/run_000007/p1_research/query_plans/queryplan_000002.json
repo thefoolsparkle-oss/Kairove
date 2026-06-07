@@ -1,0 +1,63 @@
+{
+  "query_plan_id": "queryplan_000002",
+  "run_id": "run_000007",
+  "goal": "find recent ordinary AI short-video formats for reproduction and transfer",
+  "implementation_mode": "offline_safe_with_fixture_scout_and_capability_gaps",
+  "rounds": [
+    {
+      "round": 1,
+      "purpose": "broad discovery",
+      "queries": [
+        {
+          "platform": "search",
+          "query": "find recent ordinary AI short-video formats for reproduction and transfer recent AI short video format",
+          "purpose": "broad web discovery"
+        },
+        {
+          "platform": "bilibili",
+          "query": "find recent ordinary AI short-video formats for reproduction and transfer AI 短视频 热门格式",
+          "purpose": "Chinese platform video discovery"
+        },
+        {
+          "platform": "youtube",
+          "query": "find recent ordinary AI short-video formats for reproduction and transfer AI shorts trend",
+          "purpose": "global AI video trend clues"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "purpose": "official/wiki reference check",
+      "queries": [
+        {
+          "platform": "wiki_official",
+          "query": "find recent ordinary AI short-video formats for reproduction and transfer official wiki reference",
+          "purpose": "official/wiki source discovery"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "purpose": "hard-platform capability probes",
+      "queries": [
+        {
+          "platform": "douyin",
+          "query": "find recent ordinary AI short-video formats for reproduction and transfer",
+          "purpose": "capability probe only"
+        },
+        {
+          "platform": "xiaohongshu",
+          "query": "find recent ordinary AI short-video formats for reproduction and transfer",
+          "purpose": "capability probe only"
+        }
+      ]
+    }
+  ],
+  "limits": {
+    "max_candidates_total": 300,
+    "max_harvested_sources_total": 60,
+    "max_format_observations": 20,
+    "max_sources_per_format_observation": 12
+  },
+  "created_at": "2026-06-06T12:17:08.390039Z"
+}

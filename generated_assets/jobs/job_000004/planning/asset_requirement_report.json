@@ -1,0 +1,53 @@
+{
+  "job_id": "job_000004",
+  "source_id": "source_000004",
+  "required_assets": [
+    {
+      "slot": "main_video_candidate",
+      "type": "video",
+      "provider": "manual_generation_slot",
+      "required": true
+    },
+    {
+      "slot": "reference_material",
+      "type": "text",
+      "provider": "registered_source",
+      "required": true
+    },
+    {
+      "slot": "music_or_sfx",
+      "type": "audio",
+      "provider": "local_or_manual",
+      "required": false
+    },
+    {
+      "slot": "cover_material",
+      "type": "image",
+      "provider": "generated_or_frame_capture_later",
+      "required": false
+    }
+  ],
+  "optional_assets": [
+    "official music/SFX with platform-risk note",
+    "cover frame or generated cover"
+  ],
+  "available_assets": [
+    "source_000004"
+  ],
+  "missing_assets": [
+    "generated video candidate"
+  ],
+  "searchable_assets": [
+    "official/substitute visual reference",
+    "official music/SFX"
+  ],
+  "needs_user_provided_assets": [
+    "manual generated video candidate"
+  ],
+  "policy_review_needed": false,
+  "user_needed_when_missing": [
+    "generation tool/account",
+    "local voice/music asset",
+    "official display asset if required"
+  ]
+}

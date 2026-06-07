@@ -1,0 +1,53 @@
+{
+  "prompt_package_id": "prompt_package_000001",
+  "job_id": "job_000003",
+  "run_id": "run_000003",
+  "source_refs": {
+    "primary_source": {
+      "source_id": "source_000003",
+      "candidate_source_id": "sourcecand_000003",
+      "run_id": "run_000003",
+      "job_id": "job_000003",
+      "mode": "text",
+      "value": "A recent ordinary AI short-video format seed for P0-B final verification",
+      "title": "P0-B Final Verification",
+      "author": "user",
+      "source_type": "user_provided",
+      "content_type": "text",
+      "provenance": {
+        "source_url": null,
+        "local_path": null,
+        "work_title": "P0-B Final Verification",
+        "character_or_asset_name": null,
+        "official_owner_or_account": null,
+        "usage": "format_reference",
+        "download_or_record_date": "2026-06-06T08:35:00.541784Z",
+        "linked_job": "job_000003",
+        "usage_mode": "direct_use"
+      },
+      "usage_policy": "direct_use",
+      "review_status": "not_required",
+      "used_for": [
+        "format observation",
+        "semantic transfer brief",
+        "prompt package"
+      ],
+      "created_at": "2026-06-06T08:35:00.541784Z"
+    }
+  },
+  "planning_files": {
+    "semantic_transfer_brief": "generated_assets/jobs/job_000003/planning/semantic_transfer_brief.md",
+    "route_plan": "generated_assets/jobs/job_000003/planning/route_plan.json"
+  },
+  "expected_output": {
+    "type": "video",
+    "place_file_in": "generated_assets/jobs/job_000003/manual_slots/manual_slot_000001/inbox",
+    "or_import_with_cli": "python -m kairove --root <root> import-candidate --job-id <job_id> --file <video>"
+  },
+  "next_quality_checks": [
+    "file exists",
+    "size > 0",
+    "supported video extension",
+    "basic semantic review scaffold"
+  ]
+}

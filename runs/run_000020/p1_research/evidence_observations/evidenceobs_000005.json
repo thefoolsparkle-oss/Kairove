@@ -1,0 +1,77 @@
+{
+  "evidence_observation_id": "evidenceobs_000005",
+  "run_id": "run_000020",
+  "source_id": "source_000084",
+  "candidate_source_id": "sourcecand_000083",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1Pw4xzwE8g",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "available_inputs": [
+    "url",
+    "title",
+    "platform",
+    "metadata_source",
+    "author",
+    "published_at",
+    "description",
+    "cover_url",
+    "observed_metrics",
+    "tags"
+  ],
+  "missing_inputs": [
+    "page_screenshot",
+    "video_frames",
+    "transcript",
+    "comments",
+    "audio_metadata",
+    "full_video_content"
+  ],
+  "observed_text": {
+    "title": "肆虐 B站 的傻逼 AI视频",
+    "description": "不知道标题能不能过审 为了讽刺一些，专门用AI做了个封面 如果喜欢的话希望大家多三连！！！！！ 视频中提到的素材：BV1oLkqY1Edu",
+    "tags": [
+      "B站",
+      "互联网",
+      "吐槽",
+      "生活记录",
+      "娱乐",
+      "人工智能",
+      "搞笑",
+      "视频",
+      "AI视频",
+      "国庆小剧场"
+    ],
+    "author": "米希希希希丶",
+    "published_at": "1760155200"
+  },
+  "observed_visual": {
+    "cover_url": "https://i0.hdslb.com/bfs/archive/08e8d14d4ea4b5a8a24cf2f14145eb52c1482cad.jpg",
+    "page_screenshot": null,
+    "frame_samples": []
+  },
+  "observed_metrics": {
+    "views": 12593,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 56,
+    "danmaku": 9
+  },
+  "platform_item_id": "BV1Pw4xzwE8g",
+  "content_visibility": "metadata_and_cover_url_only",
+  "understanding_limits": [
+    "No full video viewing is claimed.",
+    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+    "Format inference must remain weak until richer evidence exists."
+  ],
+  "next_evidence_needed": [
+    "page screenshot",
+    "cover/image inspection",
+    "transcript/captions if available",
+    "short manual/browser viewing note"
+  ],
+  "requires_review": true,
+  "created_at": "2026-06-07T09:31:02.548584Z"
+}

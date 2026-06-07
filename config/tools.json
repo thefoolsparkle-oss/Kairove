@@ -1,0 +1,43 @@
+{
+  "tools": {
+    "manual_generation_slot": {
+      "status": "available",
+      "tool_type": "manual_bridge",
+      "outputs": [
+        "video",
+        "image",
+        "audio"
+      ]
+    },
+    "ai_video_generation_api": {
+      "status": "not_configured",
+      "tool_type": "image_to_video | text_to_video | video_to_video",
+      "outputs": [
+        "video"
+      ],
+      "setup_requirements": [
+        "choose provider",
+        "configure account/API/local tool"
+      ]
+    },
+    "ffprobe": {
+      "status": "unknown",
+      "tool_type": "media_probe",
+      "outputs": [
+        "technical_metadata"
+      ]
+    },
+    "local_generation_tool": {
+      "status": "not_configured",
+      "tool_type": "text_to_video | image_to_video | video_to_video",
+      "outputs": [
+        "video"
+      ],
+      "setup_requirements": [
+        "install local tool",
+        "configure export path",
+        "confirm metadata/export support"
+      ]
+    }
+  }
+}

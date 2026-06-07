@@ -1,0 +1,38 @@
+{
+  "run_id": "run_000008",
+  "platform": "fixture_bilibili",
+  "url": "fixture://p1/bilibili/role-substitution-short",
+  "title": "find recent ordinary AI short-video formats for reproduction and transfer - role substitution short video example",
+  "author": "fixture_library",
+  "account": "fixture_library",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": 120000,
+    "likes": 8500,
+    "comments": 560,
+    "shares": null,
+    "favorites": 2100
+  },
+  "published_at": null,
+  "collected_at": "2026-06-06T17:07:01.629213Z",
+  "query_used": "fixture query plan queryplan_000003",
+  "evidence_mode": "fixture",
+  "metadata_source": "fixture_library",
+  "live_results_claimed": false,
+  "confidence": 0.62,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Fixture-backed Bilibili candidate shape; not live data.",
+  "discovery_reason": [
+    "fixture",
+    "query",
+    "fixture query plan queryplan_000003"
+  ],
+  "candidate_source_id": "sourcecand_000015",
+  "harvest_priority": 0.796,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:fixture"
+  ]
+}

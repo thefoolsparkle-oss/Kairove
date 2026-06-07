@@ -1,0 +1,38 @@
+{
+  "run_id": "run_000014",
+  "platform": "youtube",
+  "url": "https://www.youtube.com/shorts/pwNY8ySTXXc",
+  "title": "YouTube Shorts candidate for AI video shorts trend format examples 2026 YouTube Shorts TikTok AI shorts trend",
+  "author": null,
+  "account": null,
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "published_at": null,
+  "collected_at": "2026-06-06T17:16:47.447387Z",
+  "query_used": "AI video shorts trend format examples 2026 YouTube Shorts TikTok AI shorts trend",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "youtube_search_html",
+  "live_results_claimed": true,
+  "confidence": 0.5,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI video shorts trend format examples 2026 YouTube Shorts TikTok AI shorts trend"
+  ],
+  "candidate_source_id": "sourcecand_000042",
+  "harvest_priority": 0.58,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

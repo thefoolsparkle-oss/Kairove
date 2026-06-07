@@ -1,0 +1,8 @@
+{
+  "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+  "must_check": [
+    "text readability",
+    "platform crop",
+    "character/world consistency"
+  ]
+}

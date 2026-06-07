@@ -1,0 +1,30 @@
+{
+  "target_platforms": [
+    "bilibili",
+    "douyin",
+    "xiaohongshu",
+    "youtube_shorts"
+  ],
+  "duration_policy": "fit_format",
+  "manual_seed_role": "p0b_primary_acceptance_chain",
+  "language_policy": {
+    "default_user_facing": "zh",
+    "metadata_primary": "zh",
+    "youtube_shorts_auxiliary_metadata": "en",
+    "prompt_default": "zh_explanation_plus_en_generation_prompt",
+    "internal_keys": "en"
+  },
+  "platform_stubs": [
+    "tiktok",
+    "kuaishou",
+    "instagram_reels"
+  ],
+  "p0b_format_taste": [
+    "short_joke",
+    "abstract_short_drama",
+    "character_substitution",
+    "plot_reversal",
+    "spoken_copywriting_adaptation",
+    "ai_animation_skit"
+  ]
+}

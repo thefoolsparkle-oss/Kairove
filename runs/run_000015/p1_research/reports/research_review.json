@@ -1,0 +1,18 @@
+{
+  "run_id": "run_000015",
+  "goal": "AI video shorts trend format examples 2026 YouTube Shorts TikTok",
+  "query_plan_id": "queryplan_000010",
+  "candidate_count": 5,
+  "source_count": 5,
+  "format_observation_ids": [
+    "fmtobs_000010"
+  ],
+  "opportunity_ids": [
+    "opp_000010"
+  ],
+  "live_results_claimed": true,
+  "live_candidate_count": 5,
+  "fixture_candidate_count": 0,
+  "mode": "auto",
+  "created_at": "2026-06-07T07:48:07.117158Z"
+}

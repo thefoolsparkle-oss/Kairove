@@ -1,0 +1,54 @@
+{
+  "run_id": "run_000020",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1rdEJ63EKP",
+  "title": "【绝区零】 油管二 创播放量TOP15，第一名播放量竟然破亿！",
+  "author": "绝区零数据布",
+  "account": "绝区零数据布",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": 12938,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 434,
+    "danmaku": 195
+  },
+  "published_at": "1780750134",
+  "description": "素材使用声明：为保证原作者的权益，本期视频中所有素材中，时长短于1分钟的在不影响基本观看下进行裁剪、大于1分钟的视频至少裁剪50%以上，如果侵犯到您的权益，请联系我删除，谢谢！ Credit: To protect the rights of original creators, all materials used in this video have been edited as follows: short clips are trimmed to the minimum necessary wit",
+  "tags": [
+    "绝区零UP主激励计划",
+    "绝区零",
+    "播放量",
+    "艾莲",
+    "手游",
+    "鲨鱼妹",
+    "油管",
+    "二创",
+    "二次元",
+    "排行"
+  ],
+  "cover_url": "https://i1.hdslb.com/bfs/archive/45985b7c9f6f4e0fda913573fb445b193afe91f6.jpg",
+  "platform_item_id": "BV1rdEJ63EKP",
+  "collected_at": "2026-06-07T09:30:59.171191Z",
+  "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "confidence": 0.6,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format"
+  ],
+  "candidate_source_id": "sourcecand_000081",
+  "harvest_priority": 0.693,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

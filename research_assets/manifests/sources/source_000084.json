@@ -1,0 +1,68 @@
+{
+  "source_id": "source_000084",
+  "candidate_source_id": "sourcecand_000083",
+  "run_id": "run_000020",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1Pw4xzwE8g",
+  "title": "肆虐 B站 的傻逼 AI视频",
+  "author": "米希希希希丶",
+  "account": "米希希希希丶",
+  "source_type": "platform_user",
+  "content_type": "video",
+  "usage_policy": "analysis_only",
+  "review_status": "pending",
+  "harvest_status": "metadata_only_live",
+  "source_mode": "live_metadata",
+  "live_results_claimed": true,
+  "manual_entry": false,
+  "fixture": false,
+  "requires_review": true,
+  "files_available": {
+    "metadata": true,
+    "page_snapshot": false,
+    "raw_video": false,
+    "cover": false,
+    "screenshots": false,
+    "comments": false,
+    "transcript": false,
+    "audio_ref": false
+  },
+  "files": {
+    "metadata": "runs/run_000020/p1_research/source_candidates/sourcecand_000083.json",
+    "page_snapshot": null,
+    "raw_video": null,
+    "cover": null,
+    "screenshots": [],
+    "comments": null,
+    "transcript": null,
+    "audio_ref": null
+  },
+  "unavailable_evidence": [
+    "page_snapshot",
+    "raw_video",
+    "cover",
+    "screenshots",
+    "comments",
+    "transcript",
+    "audio_ref"
+  ],
+  "tool_setup_items_needed": [
+    "snapshot_or_browser_tool",
+    "comment_or_transcript_access",
+    "download_permission"
+  ],
+  "provenance": {
+    "source_url": "https://www.bilibili.com/video/BV1Pw4xzwE8g",
+    "platform": "bilibili",
+    "collected_at": "2026-06-07T09:31:02.409428Z",
+    "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format",
+    "metadata_source": "bilibili_public_web_search_api",
+    "used_by_run": "run_000020",
+    "what_was_saved": [
+      "structured_metadata"
+    ],
+    "why_saved": "P1 source intelligence metadata harvest."
+  },
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "created_at": "2026-06-07T09:31:02.409428Z"
+}

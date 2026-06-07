@@ -1,0 +1,94 @@
+{
+  "bilibili": {
+    "platform": "bilibili",
+    "status": "ready_manual",
+    "title": "P0-B 普通AI视频生产链测试",
+    "description": "AI video format adaptation test for P0-B 普通AI视频生产链测试.",
+    "tags": [
+      "AI视频",
+      "短视频",
+      "二创",
+      "format-transfer",
+      "Kairove"
+    ],
+    "video_path": "generated_assets/jobs/job_000001/publish/manual_publish_package/final_video.mp4",
+    "cover_notes": {
+      "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+      "must_check": [
+        "text readability",
+        "platform crop",
+        "character/world consistency"
+      ]
+    },
+    "upload_mode": "manual_package_only"
+  },
+  "douyin": {
+    "platform": "douyin",
+    "status": "ready_manual",
+    "title": "P0-B 普通AI视频生产链测试",
+    "description": "AI video format adaptation test for P0-B 普通AI视频生产链测试.",
+    "tags": [
+      "AI视频",
+      "短视频",
+      "二创",
+      "format-transfer",
+      "Kairove"
+    ],
+    "video_path": "generated_assets/jobs/job_000001/publish/manual_publish_package/final_video.mp4",
+    "cover_notes": {
+      "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+      "must_check": [
+        "text readability",
+        "platform crop",
+        "character/world consistency"
+      ]
+    },
+    "upload_mode": "manual_package_only"
+  },
+  "xiaohongshu": {
+    "platform": "xiaohongshu",
+    "status": "ready_manual",
+    "title": "P0-B 普通AI视频生产链测试",
+    "description": "AI video format adaptation test for P0-B 普通AI视频生产链测试.",
+    "tags": [
+      "AI视频",
+      "短视频",
+      "二创",
+      "format-transfer",
+      "Kairove"
+    ],
+    "video_path": "generated_assets/jobs/job_000001/publish/manual_publish_package/final_video.mp4",
+    "cover_notes": {
+      "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+      "must_check": [
+        "text readability",
+        "platform crop",
+        "character/world consistency"
+      ]
+    },
+    "upload_mode": "manual_package_only"
+  },
+  "youtube": {
+    "platform": "youtube",
+    "status": "ready_manual",
+    "title": "P0-B 普通AI视频生产链测试",
+    "description": "AI video format adaptation test for P0-B 普通AI视频生产链测试.",
+    "tags": [
+      "AI视频",
+      "短视频",
+      "二创",
+      "format-transfer",
+      "Kairove"
+    ],
+    "video_path": "generated_assets/jobs/job_000001/publish/manual_publish_package/final_video.mp4",
+    "cover_notes": {
+      "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+      "must_check": [
+        "text readability",
+        "platform crop",
+        "character/world consistency"
+      ]
+    },
+    "upload_mode": "manual_package_only"
+  }
+}

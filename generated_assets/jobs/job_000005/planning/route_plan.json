@@ -1,0 +1,10 @@
+{
+  "job_id": "job_000005",
+  "selected_route": "manual_generation_slot",
+  "reason": "P0-B must close a complete chain without requiring a configured paid generation API.",
+  "fallback_routes": [
+    "configured_ai_video_generation_api_later",
+    "local_generation_tool_later"
+  ],
+  "requires_user_action": true
+}

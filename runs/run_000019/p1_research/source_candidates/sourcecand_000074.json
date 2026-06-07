@@ -1,0 +1,39 @@
+{
+  "run_id": "run_000019",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1Fsi6Y1EHU",
+  "title": "全网没人告诉你的 AI视频 总结方法！1分钟看完3小时 视频 （提取文案、做笔记、双语翻译、思维导图全搞定!）",
+  "author": "栗氪聊AI",
+  "account": "栗氪聊AI",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": 287426,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 18503,
+    "danmaku": 189
+  },
+  "published_at": "1733494258",
+  "collected_at": "2026-06-07T08:42:23.762274Z",
+  "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "confidence": 0.6,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format"
+  ],
+  "candidate_source_id": "sourcecand_000074",
+  "harvest_priority": 0.93,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

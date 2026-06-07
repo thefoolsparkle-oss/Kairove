@@ -1,0 +1,7 @@
+{
+  "platform": "douyin",
+  "publish_modes": [
+    "manual_package"
+  ],
+  "status": "p0b_primary"
+}

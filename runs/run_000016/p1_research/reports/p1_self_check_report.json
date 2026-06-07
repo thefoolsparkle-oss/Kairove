@@ -1,0 +1,101 @@
+{
+  "run_id": "run_000016",
+  "status": "pass",
+  "failed_count": 0,
+  "checks": [
+    {
+      "name": "query_plan",
+      "path": "runs/run_000016/p1_research/query_plans",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "scout_report",
+      "path": "runs/run_000016/p1_research/scout_results/scout_report.json",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "source_candidates",
+      "path": "runs/run_000016/p1_research/source_candidates",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "harvest_report",
+      "path": "runs/run_000016/p1_research/harvested_sources/harvest_report.json",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "understanding_reports",
+      "path": "runs/run_000016/p1_research/understanding_reports",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "format_observations",
+      "path": "runs/run_000016/p1_research/format_observations",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "opportunity_packets",
+      "path": "runs/run_000016/p1_research/opportunity_packets",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "research_review",
+      "path": "runs/run_000016/p1_research/reports/research_review.md",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "live_claim_matches_candidates",
+      "ok": true,
+      "message": "live_results_claimed must only be true when live candidates exist"
+    },
+    {
+      "name": "live_capability_status",
+      "ok": true,
+      "message": "P1 must either produce live candidates or honest fixture fallback candidates"
+    },
+    {
+      "name": "douyin_probe_only",
+      "ok": true,
+      "message": "douyin must remain probe-only without login/API/browser setup"
+    },
+    {
+      "name": "xiaohongshu_probe_only",
+      "ok": true,
+      "message": "xiaohongshu must remain probe-only without login/API/browser setup"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000050",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000051",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000052",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000053",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000054",
+      "ok": true,
+      "message": "schema ok"
+    }
+  ],
+  "checked_at": "2026-06-07T07:49:06.130746Z"
+}

@@ -1,0 +1,18 @@
+{
+  "asset_id": "asset_000001",
+  "candidate_id": "candidate_000001",
+  "job_id": "job_000001",
+  "asset_class": "generated",
+  "asset_type": "video",
+  "storage_path": "generated_assets/jobs/job_000001/candidates/candidate_000001/video.mp4",
+  "hash": "a453c50c9abd5d7b9d08c333901ee82fcc9d8a94ebaa3915b1249acb1a12d53b",
+  "source_type": "fixture",
+  "usage_policy": "direct_use",
+  "review_status": "not_required",
+  "metadata": {
+    "imported_from": "E:\\影潮枢_Kairove\\tests\\fixtures\\p0b_fixture_candidate.mp4",
+    "fixture": true,
+    "size_bytes": 54
+  },
+  "created_at": "2026-06-06T07:19:47.904355Z"
+}

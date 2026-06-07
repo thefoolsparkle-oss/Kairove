@@ -1,0 +1,11 @@
+{
+  "candidate_id": "candidate_000001",
+  "job_id": "job_000001",
+  "status": "imported",
+  "output_path": "generated_assets/jobs/job_000001/candidates/candidate_000001/video.mp4",
+  "generation_steps": [
+    "genstep_000001"
+  ],
+  "asset_id": "asset_000001",
+  "created_at": "2026-06-06T07:19:47.904355Z"
+}

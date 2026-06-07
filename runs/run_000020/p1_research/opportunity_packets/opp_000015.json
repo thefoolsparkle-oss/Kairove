@@ -1,0 +1,95 @@
+{
+  "opportunity_id": "opp_000015",
+  "run_id": "run_000020",
+  "title": "Ordinary AI short-video format transfer watchlist",
+  "opportunity_type": "ai_video_style",
+  "confidence_label": "weak_observation",
+  "score_total": 0.481,
+  "score_profile_id": "p1_opportunity_default_v1",
+  "score_weights": {
+    "heat": 0.18,
+    "growth": 0.2,
+    "freshness": 0.12,
+    "repetition_signal": 0.12,
+    "comment_sentiment": 0.12,
+    "transferability": 0.1,
+    "asset_readiness": 0.07,
+    "tool_readiness": 0.06,
+    "source_confidence": 0.08,
+    "fatigue_penalty": -0.15
+  },
+  "score_components": {
+    "heat": 0.45,
+    "growth": 0.45,
+    "freshness": 0.5,
+    "repetition_signal": 0.65,
+    "comment_sentiment": 0.4,
+    "transferability": 0.6,
+    "asset_readiness": 0.35,
+    "tool_readiness": 0.5,
+    "source_confidence": 0.4,
+    "fatigue_penalty": 0.15
+  },
+  "evidence_sources": [
+    "source_000080",
+    "source_000081",
+    "source_000082",
+    "source_000083",
+    "source_000084",
+    "source_000085",
+    "source_000086",
+    "source_000087",
+    "source_000088",
+    "source_000089"
+  ],
+  "evidence_observation_ids": [
+    "evidenceobs_000001",
+    "evidenceobs_000002",
+    "evidenceobs_000003",
+    "evidenceobs_000004",
+    "evidenceobs_000005",
+    "evidenceobs_000006",
+    "evidenceobs_000007",
+    "evidenceobs_000008",
+    "evidenceobs_000009",
+    "evidenceobs_000010"
+  ],
+  "representative_examples": [
+    "source_000080",
+    "source_000081",
+    "source_000082"
+  ],
+  "format_observation_id": "fmtobs_000015",
+  "understanding_report_ids": [
+    "understanding_000075",
+    "understanding_000076",
+    "understanding_000077",
+    "understanding_000078",
+    "understanding_000079",
+    "understanding_000080",
+    "understanding_000081",
+    "understanding_000082",
+    "understanding_000083",
+    "understanding_000084"
+  ],
+  "why_it_matters": "This observation proves the P1 handoff shape for a repeated ordinary AI short-video format.",
+  "why_it_may_be_stale": "Trend, comments, growth, and richer viewing evidence are incomplete.",
+  "comment_sentiment_summary": "unknown_without_comments",
+  "asset_and_reference_notes": [
+    "page/cover/frame evidence should be enriched before P2 decisions"
+  ],
+  "tool_or_ai_method_guess": [
+    {
+      "method": "unknown_ai_video_method",
+      "confidence": 0.2,
+      "evidence": [
+        "metadata and evidence observation only"
+      ],
+      "suggested_action": "collect_page_or_cover_evidence"
+    }
+  ],
+  "p0b_handoff_readiness": "needs_more_evidence",
+  "recommended_p0b_start_mode": "opportunity_packet",
+  "review_items": [],
+  "created_at": "2026-06-07T09:31:02.729657Z"
+}

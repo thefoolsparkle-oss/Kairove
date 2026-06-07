@@ -1,0 +1,77 @@
+{
+  "evidence_observation_id": "evidenceobs_000004",
+  "run_id": "run_000020",
+  "source_id": "source_000083",
+  "candidate_source_id": "sourcecand_000081",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1rdEJ63EKP",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "available_inputs": [
+    "url",
+    "title",
+    "platform",
+    "metadata_source",
+    "author",
+    "published_at",
+    "description",
+    "cover_url",
+    "observed_metrics",
+    "tags"
+  ],
+  "missing_inputs": [
+    "page_screenshot",
+    "video_frames",
+    "transcript",
+    "comments",
+    "audio_metadata",
+    "full_video_content"
+  ],
+  "observed_text": {
+    "title": "【绝区零】 油管二 创播放量TOP15，第一名播放量竟然破亿！",
+    "description": "素材使用声明：为保证原作者的权益，本期视频中所有素材中，时长短于1分钟的在不影响基本观看下进行裁剪、大于1分钟的视频至少裁剪50%以上，如果侵犯到您的权益，请联系我删除，谢谢！ Credit: To protect the rights of original creators, all materials used in this video have been edited as follows: short clips are trimmed to the minimum necessary wit",
+    "tags": [
+      "绝区零UP主激励计划",
+      "绝区零",
+      "播放量",
+      "艾莲",
+      "手游",
+      "鲨鱼妹",
+      "油管",
+      "二创",
+      "二次元",
+      "排行"
+    ],
+    "author": "绝区零数据布",
+    "published_at": "1780750134"
+  },
+  "observed_visual": {
+    "cover_url": "https://i1.hdslb.com/bfs/archive/45985b7c9f6f4e0fda913573fb445b193afe91f6.jpg",
+    "page_screenshot": null,
+    "frame_samples": []
+  },
+  "observed_metrics": {
+    "views": 12938,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 434,
+    "danmaku": 195
+  },
+  "platform_item_id": "BV1rdEJ63EKP",
+  "content_visibility": "metadata_and_cover_url_only",
+  "understanding_limits": [
+    "No full video viewing is claimed.",
+    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+    "Format inference must remain weak until richer evidence exists."
+  ],
+  "next_evidence_needed": [
+    "page screenshot",
+    "cover/image inspection",
+    "transcript/captions if available",
+    "short manual/browser viewing note"
+  ],
+  "requires_review": true,
+  "created_at": "2026-06-07T09:31:02.547983Z"
+}

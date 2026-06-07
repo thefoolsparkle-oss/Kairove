@@ -1,0 +1,54 @@
+{
+  "run_id": "run_000020",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1Pw4xzwE8g",
+  "title": "肆虐 B站 的傻逼 AI视频",
+  "author": "米希希希希丶",
+  "account": "米希希希希丶",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": 12593,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 56,
+    "danmaku": 9
+  },
+  "published_at": "1760155200",
+  "description": "不知道标题能不能过审 为了讽刺一些，专门用AI做了个封面 如果喜欢的话希望大家多三连！！！！！ 视频中提到的素材：BV1oLkqY1Edu",
+  "tags": [
+    "B站",
+    "互联网",
+    "吐槽",
+    "生活记录",
+    "娱乐",
+    "人工智能",
+    "搞笑",
+    "视频",
+    "AI视频",
+    "国庆小剧场"
+  ],
+  "cover_url": "https://i0.hdslb.com/bfs/archive/08e8d14d4ea4b5a8a24cf2f14145eb52c1482cad.jpg",
+  "platform_item_id": "BV1Pw4xzwE8g",
+  "collected_at": "2026-06-07T09:30:59.171217Z",
+  "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "confidence": 0.6,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format"
+  ],
+  "candidate_source_id": "sourcecand_000083",
+  "harvest_priority": 0.693,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

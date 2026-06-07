@@ -1,0 +1,38 @@
+{
+  "run_id": "run_000010",
+  "platform": "search",
+  "url": "https://www.bing.com/ck/a?!&amp;&amp;p=1d864ec91d9059831054f2f63467ff737cc20a22bfab4b0787b969da3c33aa90JmltdHM9MTc4MDcwNDAwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2e669e4a-740d-6f84-2768-893a756f6e76&amp;u=a1aHR0cHM6Ly93d3cuYXBwbGUuY29tL2ljbG91ZC9maW5kLW15Lw&amp;ntb=1",
+  "title": "apple.com https:// www.apple.com › icloud › find -my",
+  "author": null,
+  "account": null,
+  "content_type": "topic_page",
+  "source_type_guess": "search_result",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "published_at": null,
+  "collected_at": "2026-06-06T17:12:14.139640Z",
+  "query_used": "find recent ordinary AI short-video formats for reproduction and transfer recent AI short video format",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "duckduckgo_lite",
+  "live_results_claimed": true,
+  "confidence": 0.5,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "find recent ordinary AI short-video formats for reproduction and transfer recent AI short video format"
+  ],
+  "candidate_source_id": "sourcecand_000024",
+  "harvest_priority": 0.58,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "generation_mode": "manual_generation_slot",
+  "duration_policy": "fit_format",
+  "aspect_ratio": "platform dependent; user/tool may choose",
+  "candidate_count": 1,
+  "platforms": [
+    "bilibili",
+    "douyin",
+    "xiaohongshu",
+    "youtube"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "platform": "youtube_shorts",
+  "status": "ready_manual",
+  "title": "P0-B Final Verification",
+  "description": "AI video format adaptation test for P0-B Final Verification.",
+  "tags": [
+    "AI-video",
+    "short-video",
+    "format-transfer",
+    "manual-package",
+    "Kairove"
+  ],
+  "video_path": "generated_assets/jobs/job_000003/publish/manual_publish_package/final_video.mp4",
+  "cover_notes": {
+    "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+    "must_check": [
+      "text readability",
+      "platform crop",
+      "character/world consistency"
+    ]
+  },
+  "upload_mode": "manual_package_only",
+  "auxiliary_metadata_en": {
+    "title_en": "P0-B Final Verification | AI format transfer test",
+    "description_en": "Manual package prepared by Kairove P0-B. This is a traceable chain test, not an automatic upload.",
+    "tags_en": [
+      "AI video",
+      "shorts",
+      "format transfer",
+      "Kairove"
+    ]
+  }
+}

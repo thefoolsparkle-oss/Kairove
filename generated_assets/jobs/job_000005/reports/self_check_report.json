@@ -1,0 +1,174 @@
+{
+  "job_id": "job_000005",
+  "candidate_id": "candidate_000005",
+  "status": "pass",
+  "failed_count": 0,
+  "checked_at": "2026-06-06T12:04:16.371767Z",
+  "checks": [
+    {
+      "name": "job_config",
+      "path": "generated_assets/jobs/job_000005/job_config.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "source_refs",
+      "path": "generated_assets/jobs/job_000005/sources/source_refs.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "format_observation",
+      "path": "generated_assets/jobs/job_000005/planning/format_observation.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "score_stub",
+      "path": "generated_assets/jobs/job_000005/planning/score_stub.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "semantic_transfer_brief",
+      "path": "generated_assets/jobs/job_000005/planning/semantic_transfer_brief.md",
+      "exists": true,
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "asset_requirement_report",
+      "path": "generated_assets/jobs/job_000005/planning/asset_requirement_report.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "route_plan",
+      "path": "generated_assets/jobs/job_000005/planning/route_plan.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "positive_prompt",
+      "path": "generated_assets/jobs/job_000005/prompts/prompt_package_000001/positive_prompt.txt",
+      "exists": true,
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "manual_slot",
+      "path": "generated_assets/jobs/job_000005/manual_slots/manual_slot_000001/slot_manifest.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "candidate_manifest",
+      "path": "generated_assets/jobs/job_000005/candidates/candidate_000005/candidate_manifest.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "technical_qa",
+      "path": "generated_assets/jobs/job_000005/quality/candidate_000005/technical_quality_report.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "semantic_qa",
+      "path": "generated_assets/jobs/job_000005/quality/candidate_000005/semantic_quality_report.md",
+      "exists": true,
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "retry_decision",
+      "path": "generated_assets/jobs/job_000005/quality/candidate_000005/retry_decision.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "readiness_report",
+      "path": "generated_assets/jobs/job_000005/publish/readiness_report.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "platform_payloads",
+      "path": "generated_assets/jobs/job_000005/publish/platform_payloads.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "manual_package_manifest",
+      "path": "generated_assets/jobs/job_000005/publish/manual_publish_package/manifest.json",
+      "exists": true,
+      "ok": true,
+      "message": "json_ok"
+    },
+    {
+      "name": "review_summary",
+      "path": "generated_assets/jobs/job_000005/publish/manual_publish_package/review_summary.md",
+      "exists": true,
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "provenance_summary",
+      "path": "generated_assets/jobs/job_000005/publish/manual_publish_package/source_and_asset_provenance.md",
+      "exists": true,
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "final_video",
+      "path": "generated_assets/jobs/job_000005/publish/manual_publish_package/final_video.mp4",
+      "exists": true,
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "auto_publish_disabled",
+      "ok": true,
+      "message": "auto_upload must remain false in P0-B"
+    },
+    {
+      "name": "fixture_not_real_publish_ready",
+      "ok": true,
+      "message": "test fixtures must not be marked as real publish-ready"
+    },
+    {
+      "name": "primary_platforms_ready_manual",
+      "ok": true,
+      "message": "P0-B primary platforms should be ready_manual"
+    },
+    {
+      "name": "stub_platforms_blocked",
+      "ok": true,
+      "message": "P0-B stub platforms should be blocked_tool_setup"
+    },
+    {
+      "name": "fixture_warning_present",
+      "ok": true,
+      "message": "fixture candidates must carry an explicit warning"
+    }
+  ],
+  "human_first_files": [
+    "generated_assets/jobs/job_000005/publish/manual_publish_package/review_summary.md",
+    "generated_assets/jobs/job_000005/publish/manual_publish_package/manifest.json",
+    "generated_assets/jobs/job_000005/publish/manual_publish_package/platform_payloads/platform_payloads.json",
+    "generated_assets/jobs/job_000005/publish/manual_publish_package/source_and_asset_provenance.md",
+    "generated_assets/jobs/job_000005/planning/semantic_transfer_brief.md"
+  ]
+}

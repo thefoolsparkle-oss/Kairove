@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "research.web_search": "allow_with_limits",
+    "research.collect_metadata": "allow",
+    "research.download_reference_assets": "ask",
+    "research.fetch_comments": "ask",
+    "asset.use_official_assets_directly": "allow",
+    "asset.use_personal_creator_assets_directly": "ask",
+    "asset.use_unknown_assets_directly": "ask",
+    "asset.generate_visual_assets": "allow",
+    "asset.generate_audio_assets": "allow",
+    "asset.train_voice": "ask",
+    "generation.generate_low_cost_drafts": "allow_with_limits",
+    "generation.generate_high_cost_candidates": "ask",
+    "generation.batch_generation": "allow_with_limits",
+    "generation.retry_generation": "allow_with_limits",
+    "publish.create_package": "allow",
+    "publish.upload_draft": "ask",
+    "publish.schedule_publish": "ask",
+    "publish.auto_publish": "ask",
+    "publish.fetch_metrics": "allow",
+    "publish.fetch_comments": "allow",
+    "system.modify_config": "ask",
+    "system.delete_generated_assets": "ask",
+    "system.delete_local_assets": "deny",
+    "system.run_background_tasks": "allow",
+    "research.download_assets": "ask",
+    "research.large_scale_downloads": "ask",
+    "research.crawl_comments": "ask",
+    "generation.low_cost_generation": "allow_with_limits",
+    "generation.high_cost_api": "ask"
+  }
+}

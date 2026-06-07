@@ -1,0 +1,30 @@
+{
+  "run_id": "run_000006",
+  "platform": "fixture_wiki_official",
+  "url": "fixture://p1/wiki/official-reference",
+  "title": "find recent ordinary AI short-video formats for reproduction and transfer - official/wiki reference candidate",
+  "author": "fixture_library",
+  "content_type": "wiki_page",
+  "source_type_guess": "wiki",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "discovery_reason": [
+    "fixture_backed_autonomous_scout",
+    "query_plan",
+    "queryplan_000001",
+    "official_wiki_shape"
+  ],
+  "confidence": 0.6,
+  "collected_at": "2026-06-06T12:15:59.833184Z",
+  "candidate_source_id": "sourcecand_000009",
+  "harvest_priority": 0.6,
+  "harvest_reason": [
+    "relevant_to_query",
+    "fixture_evidence_for_offline_p1"
+  ]
+}

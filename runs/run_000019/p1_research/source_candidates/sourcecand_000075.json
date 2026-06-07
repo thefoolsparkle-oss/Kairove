@@ -1,0 +1,38 @@
+{
+  "run_id": "run_000019",
+  "platform": "youtube",
+  "url": "https://www.youtube.com/watch?v=TtZUgwgOleA",
+  "title": "AI+剪映王炸组合！1分钟生成爆款视频 #ai #在家赚钱 #aigc",
+  "author": "厚深AI",
+  "account": "厚深AI",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "published_at": "2025-05-20T13:25:42Z",
+  "collected_at": "2026-06-07T08:42:24.205990Z",
+  "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI shorts trend",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "youtube_data_api_v3_search",
+  "live_results_claimed": true,
+  "confidence": 0.66,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI shorts trend"
+  ],
+  "candidate_source_id": "sourcecand_000075",
+  "harvest_priority": 0.74,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

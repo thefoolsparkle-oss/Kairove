@@ -1,0 +1,17 @@
+{
+  "candidate_id": "candidate_000005",
+  "file_exists": true,
+  "size_bytes": 54,
+  "extension": ".mp4",
+  "extension_supported": true,
+  "container_verified": false,
+  "resolution": null,
+  "fps": null,
+  "duration_seconds": null,
+  "is_test_fixture": true,
+  "warnings": [
+    "container_not_deep_verified_in_p0b",
+    "test_fixture_not_real_generated_video"
+  ],
+  "failure_tags": []
+}

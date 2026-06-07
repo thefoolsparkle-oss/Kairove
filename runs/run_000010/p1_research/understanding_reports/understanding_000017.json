@@ -1,0 +1,57 @@
+{
+  "understanding_report_id": "understanding_000017",
+  "source_id": "source_000022",
+  "summary": "Metadata-only understanding for search source: https://www.bing.com/ck/a?!&amp;&amp;p=1dbae5963d95a48a23297c0a99ff2baa7936c494747d4b0818ff6b0107367efeJmltdHM9MTc4MDcwNDAwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2e669e4a-740d-6f84-2768-893a756f6e76&amp;u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj0yN29wZzRIVnpXOA&amp;ntb=1",
+  "content_type_guess": [
+    "ordinary_ai_video_format_candidate",
+    "topic_page"
+  ],
+  "text_signals": {
+    "title_keywords": [
+      "https:",
+      "",
+      "www.bing.com",
+      "ck",
+      "a?!&amp;&amp;p=1dbae5963d95a48a23297c0a99ff2baa7936c494747d4b0818ff6b0107367efeJmltdHM9MTc4MDcwNDAwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2e669e4a-740d-6f84-2768-893a756f6e76&amp;u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj0yN29wZzRIVnpXOA&amp;ntb=1"
+    ],
+    "description_keywords": [],
+    "visible_text": [],
+    "transcript_summary": null
+  },
+  "visual_signals": {
+    "style_guess": "unknown_from_metadata_only",
+    "subject_guess": "unknown_from_metadata_only",
+    "subtitle_style_guess": "unknown_from_metadata_only",
+    "ai_generated_likelihood": null
+  },
+  "audio_signals": {
+    "has_music": null,
+    "music_or_sound_role": "unknown_from_metadata_only",
+    "beat_or_hook_notes": []
+  },
+  "story_or_format_clues": {
+    "roles": [
+      "role_function_possible"
+    ],
+    "beats": [
+      "hook",
+      "development",
+      "payoff_or_reversal"
+    ],
+    "hook": "candidate title/source suggests a repeatable short-video hook",
+    "punchline": null,
+    "repeatable_parts": [
+      "format function",
+      "rhythm",
+      "payoff/reversal"
+    ]
+  },
+  "confidence": 0.48,
+  "missing_inputs": [
+    "video frames",
+    "comments",
+    "transcript",
+    "audio metadata"
+  ],
+  "created_at": "2026-06-06T17:12:15.166367Z"
+}

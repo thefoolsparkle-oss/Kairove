@@ -1,0 +1,38 @@
+{
+  "run_id": "run_000016",
+  "platform": "youtube",
+  "url": "https://www.youtube.com/watch?v=KJrZLA67aAY",
+  "title": "Can YOU tell which video is AI? 🤨",
+  "author": "Alberta Tech",
+  "account": "Alberta Tech",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "published_at": "2024-12-16T22:15:04Z",
+  "collected_at": "2026-06-07T07:49:05.738077Z",
+  "query_used": "AI video shorts trend format examples 2026 YouTube Shorts TikTok AI shorts trend",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "youtube_data_api_v3_search",
+  "live_results_claimed": true,
+  "confidence": 0.66,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI video shorts trend format examples 2026 YouTube Shorts TikTok AI shorts trend"
+  ],
+  "candidate_source_id": "sourcecand_000054",
+  "harvest_priority": 0.74,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

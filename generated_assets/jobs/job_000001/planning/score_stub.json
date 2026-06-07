@@ -1,0 +1,15 @@
+{
+  "score_profile": "trend_video_v1",
+  "visible_weights": {
+    "interest_guess": 0.4,
+    "production_feasibility": 0.35,
+    "risk_or_review_need": -0.25
+  },
+  "scores": {
+    "interest_guess": 0.5,
+    "production_feasibility": 0.5,
+    "risk_or_review_need": 0.0
+  },
+  "weighted_total": 0.45,
+  "adjustable_later": true
+}

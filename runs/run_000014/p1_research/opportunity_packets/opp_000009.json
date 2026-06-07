@@ -1,0 +1,73 @@
+{
+  "opportunity_id": "opp_000009",
+  "run_id": "run_000014",
+  "title": "Ordinary AI short-video format transfer watchlist",
+  "opportunity_type": "ai_video_style",
+  "confidence_label": "weak_observation",
+  "score_total": 0.481,
+  "score_profile_id": "p1_opportunity_default_v1",
+  "score_weights": {
+    "heat": 0.18,
+    "growth": 0.2,
+    "freshness": 0.12,
+    "repetition_signal": 0.12,
+    "comment_sentiment": 0.12,
+    "transferability": 0.1,
+    "asset_readiness": 0.07,
+    "tool_readiness": 0.06,
+    "source_confidence": 0.08,
+    "fatigue_penalty": -0.15
+  },
+  "score_components": {
+    "heat": 0.45,
+    "growth": 0.45,
+    "freshness": 0.5,
+    "repetition_signal": 0.65,
+    "comment_sentiment": 0.4,
+    "transferability": 0.6,
+    "asset_readiness": 0.35,
+    "tool_readiness": 0.5,
+    "source_confidence": 0.4,
+    "fatigue_penalty": 0.15
+  },
+  "evidence_sources": [
+    "source_000040",
+    "source_000041",
+    "source_000042",
+    "source_000043",
+    "source_000044"
+  ],
+  "representative_examples": [
+    "source_000040",
+    "source_000041",
+    "source_000042"
+  ],
+  "format_observation_id": "fmtobs_000009",
+  "understanding_report_ids": [
+    "understanding_000035",
+    "understanding_000036",
+    "understanding_000037",
+    "understanding_000038",
+    "understanding_000039"
+  ],
+  "why_it_matters": "This observation proves the P1 handoff shape for a repeated ordinary AI short-video format.",
+  "why_it_may_be_stale": "Trend, comments, growth, and richer evidence are incomplete in metadata-only mode.",
+  "comment_sentiment_summary": "unknown_metadata_only",
+  "asset_and_reference_notes": [
+    "official/wiki references should be enriched when live search is available"
+  ],
+  "tool_or_ai_method_guess": [
+    {
+      "method": "unknown_ai_video_method",
+      "confidence": 0.2,
+      "evidence": [
+        "metadata-only"
+      ],
+      "suggested_action": "check_tool_registry"
+    }
+  ],
+  "p0b_handoff_readiness": "needs_more_evidence",
+  "recommended_p0b_start_mode": "opportunity_packet",
+  "review_items": [],
+  "created_at": "2026-06-06T17:16:47.834967Z"
+}

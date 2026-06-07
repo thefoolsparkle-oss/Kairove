@@ -1,0 +1,18 @@
+{
+  "run_id": "run_000019",
+  "goal": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts",
+  "query_plan_id": "queryplan_000014",
+  "candidate_count": 10,
+  "source_count": 10,
+  "format_observation_ids": [
+    "fmtobs_000014"
+  ],
+  "opportunity_ids": [
+    "opp_000014"
+  ],
+  "live_results_claimed": true,
+  "live_candidate_count": 10,
+  "fixture_candidate_count": 0,
+  "mode": "auto",
+  "created_at": "2026-06-07T08:42:26.918704Z"
+}

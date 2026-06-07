@@ -1,0 +1,20 @@
+{
+  "source_id": "source_000001",
+  "candidate_source_id": "sourcecand_000001",
+  "run_id": "run_000001",
+  "job_id": "job_000001",
+  "mode": "text",
+  "value": "普通AI视频格式种子：近期很多视频围绕嘴硬情侣/反差短剧结构进行演绎，目标是迁移成可替换角色和画风的普通AI视频。",
+  "title": "P0-B 普通AI视频生产链测试",
+  "author": "user",
+  "source_type": "user_provided",
+  "content_type": "text",
+  "usage_policy": "direct_use",
+  "review_status": "not_required",
+  "used_for": [
+    "format observation",
+    "semantic transfer brief",
+    "prompt package"
+  ],
+  "created_at": "2026-06-06T07:19:47.836767Z"
+}

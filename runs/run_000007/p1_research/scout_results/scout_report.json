@@ -1,0 +1,66 @@
+{
+  "run_id": "run_000007",
+  "query_plan_id": "queryplan_000002",
+  "status": "offline_fixture_scout_completed_with_capability_gaps",
+  "live_results_claimed": false,
+  "candidate_count": 4,
+  "candidate_ids": [
+    "sourcecand_000010",
+    "sourcecand_000011",
+    "sourcecand_000012",
+    "sourcecand_000013"
+  ],
+  "scout_results": [
+    {
+      "platform": "search",
+      "status": "capability_gap_recorded",
+      "live_results_claimed": false,
+      "tool_setup_item": "toolsetup_000012",
+      "notes": "No fake external data was produced."
+    },
+    {
+      "platform": "bilibili",
+      "status": "capability_gap_recorded",
+      "live_results_claimed": false,
+      "tool_setup_item": "toolsetup_000013",
+      "notes": "No fake external data was produced."
+    },
+    {
+      "platform": "youtube",
+      "status": "capability_gap_recorded",
+      "live_results_claimed": false,
+      "tool_setup_item": "toolsetup_000014",
+      "notes": "No fake external data was produced."
+    },
+    {
+      "platform": "wiki_official",
+      "status": "capability_gap_recorded",
+      "live_results_claimed": false,
+      "tool_setup_item": "toolsetup_000015",
+      "notes": "No fake external data was produced."
+    },
+    {
+      "platform": "douyin",
+      "status": "probe_only",
+      "capabilities": {
+        "search": "requires_browser_or_api",
+        "metadata": "partial_or_unknown",
+        "comments": "requires_auth_or_browser",
+        "download_video": "blocked_or_limited"
+      },
+      "tool_setup_item": "toolsetup_000016"
+    },
+    {
+      "platform": "xiaohongshu",
+      "status": "probe_only",
+      "capabilities": {
+        "search": "requires_browser_or_api",
+        "metadata": "partial_or_unknown",
+        "comments": "requires_auth_or_browser",
+        "download_video": "blocked_or_limited"
+      },
+      "tool_setup_item": "toolsetup_000017"
+    }
+  ],
+  "created_at": "2026-06-06T12:17:08.411366Z"
+}

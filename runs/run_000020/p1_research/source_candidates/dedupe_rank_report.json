@@ -1,0 +1,16 @@
+{
+  "ranked_candidate_ids": [
+    "sourcecand_000080",
+    "sourcecand_000084",
+    "sourcecand_000082",
+    "sourcecand_000081",
+    "sourcecand_000083",
+    "sourcecand_000089",
+    "sourcecand_000088",
+    "sourcecand_000087",
+    "sourcecand_000086",
+    "sourcecand_000085"
+  ],
+  "deduped_count": 10,
+  "created_at": "2026-06-07T09:31:02.409103Z"
+}

@@ -1,0 +1,57 @@
+{
+  "understanding_report_id": "understanding_000062",
+  "source_id": "source_000067",
+  "summary": "Metadata-only understanding for youtube source: https://www.youtube.com/shorts/33o3QX7eQC4",
+  "content_type_guess": [
+    "ordinary_ai_video_format_candidate",
+    "video"
+  ],
+  "text_signals": {
+    "title_keywords": [
+      "https:",
+      "",
+      "www.youtube.com",
+      "shorts",
+      "33o3QX7eQC4"
+    ],
+    "description_keywords": [],
+    "visible_text": [],
+    "transcript_summary": null
+  },
+  "visual_signals": {
+    "style_guess": "unknown_from_metadata_only",
+    "subject_guess": "unknown_from_metadata_only",
+    "subtitle_style_guess": "unknown_from_metadata_only",
+    "ai_generated_likelihood": null
+  },
+  "audio_signals": {
+    "has_music": null,
+    "music_or_sound_role": "unknown_from_metadata_only",
+    "beat_or_hook_notes": []
+  },
+  "story_or_format_clues": {
+    "roles": [
+      "role_function_possible"
+    ],
+    "beats": [
+      "hook",
+      "development",
+      "payoff_or_reversal"
+    ],
+    "hook": "candidate title/source suggests a repeatable short-video hook",
+    "punchline": null,
+    "repeatable_parts": [
+      "format function",
+      "rhythm",
+      "payoff/reversal"
+    ]
+  },
+  "confidence": 0.48,
+  "missing_inputs": [
+    "video frames",
+    "comments",
+    "transcript",
+    "audio metadata"
+  ],
+  "created_at": "2026-06-07T08:40:00.414060Z"
+}

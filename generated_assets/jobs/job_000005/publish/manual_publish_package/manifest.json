@@ -1,0 +1,8 @@
+{
+  "job_id": "job_000005",
+  "candidate_id": "candidate_000005",
+  "final_video": "generated_assets/jobs/job_000005/publish/manual_publish_package/final_video.mp4",
+  "payloads": "generated_assets/jobs/job_000005/publish/manual_publish_package/platform_payloads/platform_payloads.json",
+  "readiness_report": "generated_assets/jobs/job_000005/publish/readiness_report.json",
+  "auto_publish": false
+}

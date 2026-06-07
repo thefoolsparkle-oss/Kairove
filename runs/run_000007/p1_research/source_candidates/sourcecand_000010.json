@@ -1,0 +1,30 @@
+{
+  "run_id": "run_000007",
+  "platform": "fixture_search",
+  "url": "fixture://p1/search/abstract-ai-short-format",
+  "title": "find recent ordinary AI short-video formats for reproduction and transfer - repeated abstract AI short format discussion",
+  "author": "fixture_library",
+  "content_type": "topic_page",
+  "source_type_guess": "search_result",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "discovery_reason": [
+    "fixture_backed_autonomous_scout",
+    "query_plan",
+    "queryplan_000002",
+    "broad_web_shape"
+  ],
+  "confidence": 0.55,
+  "collected_at": "2026-06-06T12:17:08.409366Z",
+  "candidate_source_id": "sourcecand_000010",
+  "harvest_priority": 0.55,
+  "harvest_reason": [
+    "relevant_to_query",
+    "fixture_evidence_for_offline_p1"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "run_id": "run_000020",
+  "platform": "youtube",
+  "url": "https://www.youtube.com/shorts/0MqScA3fu_4",
+  "title": "YouTube Shorts candidate for AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI shorts trend",
+  "author": null,
+  "account": null,
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "published_at": null,
+  "description": null,
+  "tags": [],
+  "cover_url": null,
+  "platform_item_id": "0MqScA3fu_4",
+  "collected_at": "2026-06-07T09:31:00.300175Z",
+  "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI shorts trend",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "youtube_search_html",
+  "live_results_claimed": true,
+  "confidence": 0.5,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI shorts trend"
+  ],
+  "candidate_source_id": "sourcecand_000089",
+  "harvest_priority": 0.58,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

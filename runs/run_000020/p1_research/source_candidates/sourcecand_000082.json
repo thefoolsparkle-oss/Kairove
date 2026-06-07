@@ -1,0 +1,54 @@
+{
+  "run_id": "run_000020",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1SS5c6ZEzy",
+  "title": "AI 爱死机 国外大神制作《缝补匠》赛博朋克短片 THE PATCHWRIGHT | Cyberpunk Short Film",
+  "author": "阿冬_CrossHub",
+  "account": "阿冬_CrossHub",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": 25316,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 455,
+    "danmaku": 68
+  },
+  "published_at": "1780480740",
+  "description": "博主:@Gossip.Goblin 2026 年 Gossip Goblin 工作室出品的 AI 赛博朋克短片，讲述未来地下 “废铁人” 与上层资本的对立，被 Reddit 评为 “真正的赛博朋克”。",
+  "tags": [
+    "微电影",
+    "AI",
+    "人工智能",
+    "宇宙",
+    "科幻",
+    "AI短片",
+    "短片",
+    "YouTube",
+    "科幻短片",
+    "机器人"
+  ],
+  "cover_url": "https://i1.hdslb.com/bfs/archive/25c5b1d5fc7178728d2668440f37f65326ceef4b.jpg",
+  "platform_item_id": "BV1SS5c6ZEzy",
+  "collected_at": "2026-06-07T09:30:59.171206Z",
+  "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "confidence": 0.6,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format"
+  ],
+  "candidate_source_id": "sourcecand_000082",
+  "harvest_priority": 0.705,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

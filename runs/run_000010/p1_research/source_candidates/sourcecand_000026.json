@@ -1,0 +1,38 @@
+{
+  "run_id": "run_000010",
+  "platform": "search",
+  "url": "https://www.bing.com/ck/a?!&amp;&amp;p=1dbae5963d95a48a23297c0a99ff2baa7936c494747d4b0818ff6b0107367efeJmltdHM9MTc4MDcwNDAwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2e669e4a-740d-6f84-2768-893a756f6e76&amp;u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj0yN29wZzRIVnpXOA&amp;ntb=1",
+  "title": "youtube.com https:// www.youtube.com › watch",
+  "author": null,
+  "account": null,
+  "content_type": "topic_page",
+  "source_type_guess": "search_result",
+  "observed_metrics": {
+    "views": null,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": null
+  },
+  "published_at": null,
+  "collected_at": "2026-06-06T17:12:14.139654Z",
+  "query_used": "find recent ordinary AI short-video formats for reproduction and transfer recent AI short video format",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "duckduckgo_lite",
+  "live_results_claimed": true,
+  "confidence": 0.5,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "find recent ordinary AI short-video formats for reproduction and transfer recent AI short video format"
+  ],
+  "candidate_source_id": "sourcecand_000026",
+  "harvest_priority": 0.58,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

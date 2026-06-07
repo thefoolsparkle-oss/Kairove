@@ -1,0 +1,6 @@
+{
+  "platform": "instagram_reels",
+  "status": "blocked_tool_setup",
+  "reason": "P0-B platform stub only; full support is not required for P0-B.",
+  "upload_mode": "manual_package_stub"
+}

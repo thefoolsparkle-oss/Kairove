@@ -1,0 +1,10 @@
+{
+  "budget": {
+    "daily_max_cost": null,
+    "per_run_max_cost": null,
+    "per_job_max_cost": null,
+    "high_cost_confirmation_threshold": null,
+    "max_parallel_generations": 4,
+    "default_retry_rounds": 5
+  }
+}

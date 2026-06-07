@@ -1,0 +1,77 @@
+{
+  "evidence_observation_id": "evidenceobs_000003",
+  "run_id": "run_000020",
+  "source_id": "source_000082",
+  "candidate_source_id": "sourcecand_000082",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1SS5c6ZEzy",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "available_inputs": [
+    "url",
+    "title",
+    "platform",
+    "metadata_source",
+    "author",
+    "published_at",
+    "description",
+    "cover_url",
+    "observed_metrics",
+    "tags"
+  ],
+  "missing_inputs": [
+    "page_screenshot",
+    "video_frames",
+    "transcript",
+    "comments",
+    "audio_metadata",
+    "full_video_content"
+  ],
+  "observed_text": {
+    "title": "AI 爱死机 国外大神制作《缝补匠》赛博朋克短片 THE PATCHWRIGHT | Cyberpunk Short Film",
+    "description": "博主:@Gossip.Goblin 2026 年 Gossip Goblin 工作室出品的 AI 赛博朋克短片，讲述未来地下 “废铁人” 与上层资本的对立，被 Reddit 评为 “真正的赛博朋克”。",
+    "tags": [
+      "微电影",
+      "AI",
+      "人工智能",
+      "宇宙",
+      "科幻",
+      "AI短片",
+      "短片",
+      "YouTube",
+      "科幻短片",
+      "机器人"
+    ],
+    "author": "阿冬_CrossHub",
+    "published_at": "1780480740"
+  },
+  "observed_visual": {
+    "cover_url": "https://i1.hdslb.com/bfs/archive/25c5b1d5fc7178728d2668440f37f65326ceef4b.jpg",
+    "page_screenshot": null,
+    "frame_samples": []
+  },
+  "observed_metrics": {
+    "views": 25316,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 455,
+    "danmaku": 68
+  },
+  "platform_item_id": "BV1SS5c6ZEzy",
+  "content_visibility": "metadata_and_cover_url_only",
+  "understanding_limits": [
+    "No full video viewing is claimed.",
+    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+    "Format inference must remain weak until richer evidence exists."
+  ],
+  "next_evidence_needed": [
+    "page screenshot",
+    "cover/image inspection",
+    "transcript/captions if available",
+    "short manual/browser viewing note"
+  ],
+  "requires_review": true,
+  "created_at": "2026-06-07T09:31:02.547288Z"
+}

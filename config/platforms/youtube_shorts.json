@@ -1,0 +1,8 @@
+{
+  "platform": "youtube_shorts",
+  "status": "p0b_primary",
+  "publish_modes": [
+    "manual_package"
+  ],
+  "auxiliary_metadata_language": "en"
+}

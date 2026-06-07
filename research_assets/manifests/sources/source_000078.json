@@ -1,0 +1,68 @@
+{
+  "source_id": "source_000078",
+  "candidate_source_id": "sourcecand_000071",
+  "run_id": "run_000019",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1PowazHEVj",
+  "title": "2026年全网最强免费 视频 下载工具，支持8k分辨率和 B站Youtube 等各大平台，小白易上手（手机、电脑、网页）均可用",
+  "author": "MasLogin浏览器",
+  "account": "MasLogin浏览器",
+  "source_type": "platform_user",
+  "content_type": "video",
+  "usage_policy": "analysis_only",
+  "review_status": "pending",
+  "harvest_status": "metadata_only_live",
+  "source_mode": "live_metadata",
+  "live_results_claimed": true,
+  "manual_entry": false,
+  "fixture": false,
+  "requires_review": true,
+  "files_available": {
+    "metadata": true,
+    "page_snapshot": false,
+    "raw_video": false,
+    "cover": false,
+    "screenshots": false,
+    "comments": false,
+    "transcript": false,
+    "audio_ref": false
+  },
+  "files": {
+    "metadata": "runs/run_000019/p1_research/source_candidates/sourcecand_000071.json",
+    "page_snapshot": null,
+    "raw_video": null,
+    "cover": null,
+    "screenshots": [],
+    "comments": null,
+    "transcript": null,
+    "audio_ref": null
+  },
+  "unavailable_evidence": [
+    "page_snapshot",
+    "raw_video",
+    "cover",
+    "screenshots",
+    "comments",
+    "transcript",
+    "audio_ref"
+  ],
+  "tool_setup_items_needed": [
+    "snapshot_or_browser_tool",
+    "comment_or_transcript_access",
+    "download_permission"
+  ],
+  "provenance": {
+    "source_url": "https://www.bilibili.com/video/BV1PowazHEVj",
+    "platform": "bilibili",
+    "collected_at": "2026-06-07T08:42:26.811309Z",
+    "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format",
+    "metadata_source": "bilibili_public_web_search_api",
+    "used_by_run": "run_000019",
+    "what_was_saved": [
+      "structured_metadata"
+    ],
+    "why_saved": "P1 source intelligence metadata harvest."
+  },
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "created_at": "2026-06-07T08:42:26.811309Z"
+}

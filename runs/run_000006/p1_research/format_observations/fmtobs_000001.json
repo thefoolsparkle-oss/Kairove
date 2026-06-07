@@ -1,0 +1,32 @@
+{
+  "observation_id": "fmtobs_000001",
+  "run_id": "run_000006",
+  "candidate_format_name": "ordinary_ai_short_format_transfer_watchlist",
+  "evidence_sources": [
+    "source_000006",
+    "source_000007",
+    "source_000008",
+    "source_000009"
+  ],
+  "understanding_report_ids": [
+    "understanding_000001",
+    "understanding_000002",
+    "understanding_000003",
+    "understanding_000004"
+  ],
+  "shared_signals": [
+    "short-video hook",
+    "format function can be transferred",
+    "payoff or reversal beat",
+    "metadata-only evidence needs live validation"
+  ],
+  "possible_routes": [
+    "ordinary_ai_format_video",
+    "script_council_later",
+    "character_reenactment_later"
+  ],
+  "confidence_label": "promising_observation",
+  "confidence": 0.62,
+  "needs_more_sources": true,
+  "created_at": "2026-06-06T12:15:59.945357Z"
+}

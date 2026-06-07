@@ -1,0 +1,6 @@
+{
+  "platform": "youtube",
+  "publish_modes": [
+    "manual_package"
+  ]
+}

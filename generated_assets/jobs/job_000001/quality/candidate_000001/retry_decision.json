@@ -1,0 +1,7 @@
+{
+  "candidate_id": "candidate_000001",
+  "decision": "pass_to_packaging",
+  "publish_ready": true,
+  "failure_tags": [],
+  "next_action": "build_manual_publish_package"
+}

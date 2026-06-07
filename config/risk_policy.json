@@ -1,0 +1,34 @@
+{
+  "risk_policy": {
+    "official_misleading_risk": {
+      "enabled": false
+    },
+    "official_assets": {
+      "images": "direct_use",
+      "videos": "direct_use",
+      "music": "direct_use",
+      "sfx": "direct_use",
+      "require_review": false,
+      "music_requires_platform_risk_note": true
+    },
+    "personal_creator_assets": {
+      "direct_use": "ask",
+      "reference_use": "allow",
+      "style_analysis": "allow"
+    },
+    "unknown_source_assets": {
+      "direct_use": "ask",
+      "reference_use": "ask",
+      "style_analysis": "allow"
+    },
+    "generated_assets": {
+      "direct_use": "allow"
+    },
+    "voice": {
+      "user_trained": "allow",
+      "generated_original": "allow",
+      "official_character_clone": "ask",
+      "real_person_clone": "ask"
+    }
+  }
+}

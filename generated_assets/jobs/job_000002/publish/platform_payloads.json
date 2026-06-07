@@ -1,0 +1,122 @@
+{
+  "bilibili": {
+    "platform": "bilibili",
+    "status": "ready_manual",
+    "title": "P0-B Implementation Verification",
+    "description": "AI video format adaptation test for P0-B Implementation Verification.",
+    "tags": [
+      "AI-video",
+      "short-video",
+      "format-transfer",
+      "manual-package",
+      "Kairove"
+    ],
+    "video_path": "generated_assets/jobs/job_000002/publish/manual_publish_package/final_video.mp4",
+    "cover_notes": {
+      "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+      "must_check": [
+        "text readability",
+        "platform crop",
+        "character/world consistency"
+      ]
+    },
+    "upload_mode": "manual_package_only"
+  },
+  "douyin": {
+    "platform": "douyin",
+    "status": "ready_manual",
+    "title": "P0-B Implementation Verification",
+    "description": "AI video format adaptation test for P0-B Implementation Verification.",
+    "tags": [
+      "AI-video",
+      "short-video",
+      "format-transfer",
+      "manual-package",
+      "Kairove"
+    ],
+    "video_path": "generated_assets/jobs/job_000002/publish/manual_publish_package/final_video.mp4",
+    "cover_notes": {
+      "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+      "must_check": [
+        "text readability",
+        "platform crop",
+        "character/world consistency"
+      ]
+    },
+    "upload_mode": "manual_package_only"
+  },
+  "xiaohongshu": {
+    "platform": "xiaohongshu",
+    "status": "ready_manual",
+    "title": "P0-B Implementation Verification",
+    "description": "AI video format adaptation test for P0-B Implementation Verification.",
+    "tags": [
+      "AI-video",
+      "short-video",
+      "format-transfer",
+      "manual-package",
+      "Kairove"
+    ],
+    "video_path": "generated_assets/jobs/job_000002/publish/manual_publish_package/final_video.mp4",
+    "cover_notes": {
+      "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+      "must_check": [
+        "text readability",
+        "platform crop",
+        "character/world consistency"
+      ]
+    },
+    "upload_mode": "manual_package_only"
+  },
+  "youtube_shorts": {
+    "platform": "youtube_shorts",
+    "status": "ready_manual",
+    "title": "P0-B Implementation Verification",
+    "description": "AI video format adaptation test for P0-B Implementation Verification.",
+    "tags": [
+      "AI-video",
+      "short-video",
+      "format-transfer",
+      "manual-package",
+      "Kairove"
+    ],
+    "video_path": "generated_assets/jobs/job_000002/publish/manual_publish_package/final_video.mp4",
+    "cover_notes": {
+      "cover_strategy": "P0-B placeholder: choose a clear frame or generate a cover later.",
+      "must_check": [
+        "text readability",
+        "platform crop",
+        "character/world consistency"
+      ]
+    },
+    "upload_mode": "manual_package_only",
+    "auxiliary_metadata_en": {
+      "title_en": "P0-B Implementation Verification | AI format transfer test",
+      "description_en": "Manual package prepared by Kairove P0-B. This is a traceable chain test, not an automatic upload.",
+      "tags_en": [
+        "AI video",
+        "shorts",
+        "format transfer",
+        "Kairove"
+      ]
+    }
+  },
+  "tiktok": {
+    "platform": "tiktok",
+    "status": "blocked_tool_setup",
+    "reason": "P0-B platform stub only; full support is not required for P0-B.",
+    "upload_mode": "manual_package_stub"
+  },
+  "kuaishou": {
+    "platform": "kuaishou",
+    "status": "blocked_tool_setup",
+    "reason": "P0-B platform stub only; full support is not required for P0-B.",
+    "upload_mode": "manual_package_stub"
+  },
+  "instagram_reels": {
+    "platform": "instagram_reels",
+    "status": "blocked_tool_setup",
+    "reason": "P0-B platform stub only; full support is not required for P0-B.",
+    "upload_mode": "manual_package_stub"
+  }
+}

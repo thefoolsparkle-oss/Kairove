@@ -1,0 +1,19 @@
+{
+  "profile_type": "trend",
+  "version": "p0b_locked_2026_06_06",
+  "weights": {
+    "popularity": 0.2,
+    "growth_speed": 0.2,
+    "reproduction_clarity": 0.14,
+    "production_feasibility": 0.14,
+    "asset_availability": 0.1,
+    "platform_fit": 0.1,
+    "comment_sentiment": 0.08,
+    "fatigue_or_overused_risk": -0.12
+  },
+  "policy": {
+    "popularity_and_growth_start_higher": true,
+    "fatigue_uses_comment_growth_interaction_quality": true,
+    "major_weight_changes_require_user_approval": true
+  }
+}

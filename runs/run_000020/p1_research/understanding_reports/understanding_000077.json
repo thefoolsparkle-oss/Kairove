@@ -1,0 +1,83 @@
+{
+  "understanding_report_id": "understanding_000077",
+  "source_id": "source_000082",
+  "evidence_observation_id": "evidenceobs_000003",
+  "summary": "Evidence-limited understanding for bilibili source: AI 爱死机 国外大神制作《缝补匠》赛博朋克短片 THE PATCHWRIGHT | Cyberpunk Short Film",
+  "content_type_guess": [
+    "ordinary_ai_video_format_candidate",
+    "video"
+  ],
+  "text_signals": {
+    "title_keywords": [
+      "AI",
+      "爱死机",
+      "国外大神制作《缝补匠》赛博朋克短片",
+      "THE",
+      "PATCHWRIGHT",
+      "Cyberpunk",
+      "Short",
+      "Film"
+    ],
+    "description_keywords": [
+      "博主",
+      "@Gossip.Goblin",
+      "2026",
+      "年",
+      "Gossip",
+      "Goblin",
+      "工作室出品的",
+      "AI",
+      "赛博朋克短片",
+      "讲述未来地下",
+      "“废铁人”",
+      "与上层资本的对立",
+      "被",
+      "Reddit",
+      "评为",
+      "“真正的赛博朋克”"
+    ],
+    "visible_text": [
+      "AI 爱死机 国外大神制作《缝补匠》赛博朋克短片 THE PATCHWRIGHT | Cyberpunk Short Film",
+      "博主:@Gossip.Goblin 2026 年 Gossip Goblin 工作室出品的 AI 赛博朋克短片，讲述未来地下 “废铁人” 与上层资本的对立，被 Reddit 评为 “真正的赛博朋克”。"
+    ],
+    "transcript_summary": null
+  },
+  "visual_signals": {
+    "style_guess": "unknown_until_cover_or_frames_are_inspected",
+    "subject_guess": "unknown_until_cover_or_frames_are_inspected",
+    "subtitle_style_guess": "unknown_until_screenshot_or_frames",
+    "ai_generated_likelihood": null,
+    "cover_url": "https://i1.hdslb.com/bfs/archive/25c5b1d5fc7178728d2668440f37f65326ceef4b.jpg"
+  },
+  "audio_signals": {
+    "has_music": null,
+    "music_or_sound_role": "unknown_from_metadata_only",
+    "beat_or_hook_notes": []
+  },
+  "story_or_format_clues": {
+    "roles": [
+      "unknown_from_metadata_only"
+    ],
+    "beats": [],
+    "hook": "title/description may suggest a topic hook; video structure is not viewed yet",
+    "punchline": null,
+    "repeatable_parts": [
+      "topic angle only"
+    ]
+  },
+  "confidence": 0.52,
+  "missing_inputs": [
+    "page_screenshot",
+    "video_frames",
+    "transcript",
+    "comments",
+    "audio_metadata",
+    "full_video_content"
+  ],
+  "understanding_limits": [
+    "No full video viewing is claimed.",
+    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+    "Format inference must remain weak until richer evidence exists."
+  ],
+  "created_at": "2026-06-07T09:31:02.608197Z"
+}

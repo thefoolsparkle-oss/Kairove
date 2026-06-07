@@ -1,0 +1,77 @@
+{
+  "evidence_observation_id": "evidenceobs_000001",
+  "run_id": "run_000020",
+  "source_id": "source_000080",
+  "candidate_source_id": "sourcecand_000080",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV18M1FYqEjT",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "available_inputs": [
+    "url",
+    "title",
+    "platform",
+    "metadata_source",
+    "author",
+    "published_at",
+    "description",
+    "cover_url",
+    "observed_metrics",
+    "tags"
+  ],
+  "missing_inputs": [
+    "page_screenshot",
+    "video_frames",
+    "transcript",
+    "comments",
+    "audio_metadata",
+    "full_video_content"
+  ],
+  "observed_text": {
+    "title": "这4款最强 AI视频 总结神器竟然全都免费！【建议收藏】看 视频 必备！支持 B站 、 YouTube 、本地 视频 等",
+    "description": "喜欢的朋友可以三连+关注支持一下，这对我帮助很大～",
+    "tags": [
+      "软件",
+      "ai",
+      "工具",
+      "AI工具",
+      "视频总结",
+      "AI总结",
+      "AI",
+      "YouTube",
+      "人工智能",
+      "ai视频总结"
+    ],
+    "author": "栗氪聊AI",
+    "published_at": "1729675377"
+  },
+  "observed_visual": {
+    "cover_url": "https://i2.hdslb.com/bfs/archive/8c2f58f782c998f194d1900fbe167ab23efeda40.jpg",
+    "page_screenshot": null,
+    "frame_samples": []
+  },
+  "observed_metrics": {
+    "views": 102839,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 4367,
+    "danmaku": 165
+  },
+  "platform_item_id": "BV18M1FYqEjT",
+  "content_visibility": "metadata_and_cover_url_only",
+  "understanding_limits": [
+    "No full video viewing is claimed.",
+    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+    "Format inference must remain weak until richer evidence exists."
+  ],
+  "next_evidence_needed": [
+    "page screenshot",
+    "cover/image inspection",
+    "transcript/captions if available",
+    "short manual/browser viewing note"
+  ],
+  "requires_review": true,
+  "created_at": "2026-06-07T09:31:02.546431Z"
+}

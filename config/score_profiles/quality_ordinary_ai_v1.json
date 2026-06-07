@@ -1,0 +1,8 @@
+{
+  "profile_type": "quality",
+  "version": "1.0",
+  "weights": {
+    "technical_validity": 0.5,
+    "semantic_fit": 0.5
+  }
+}

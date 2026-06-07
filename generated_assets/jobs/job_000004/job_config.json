@@ -1,0 +1,13 @@
+{
+  "job_id": "job_000004",
+  "run_id": "run_000004",
+  "job_type": "ordinary_ai_format_video",
+  "title_working": "P0-B Readable Output Review",
+  "target_platforms": [
+    "bilibili",
+    "douyin",
+    "xiaohongshu",
+    "youtube_shorts"
+  ],
+  "created_at": "2026-06-06T12:00:09.624418Z"
+}

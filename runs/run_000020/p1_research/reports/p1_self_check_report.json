@@ -1,0 +1,232 @@
+{
+  "run_id": "run_000020",
+  "status": "pass",
+  "failed_count": 0,
+  "checks": [
+    {
+      "name": "query_plan",
+      "path": "runs/run_000020/p1_research/query_plans",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "scout_report",
+      "path": "runs/run_000020/p1_research/scout_results/scout_report.json",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "source_candidates",
+      "path": "runs/run_000020/p1_research/source_candidates",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "harvest_report",
+      "path": "runs/run_000020/p1_research/harvested_sources/harvest_report.json",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "evidence_observations",
+      "path": "runs/run_000020/p1_research/evidence_observations",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "understanding_reports",
+      "path": "runs/run_000020/p1_research/understanding_reports",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "format_observations",
+      "path": "runs/run_000020/p1_research/format_observations",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "opportunity_packets",
+      "path": "runs/run_000020/p1_research/opportunity_packets",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "research_review",
+      "path": "runs/run_000020/p1_research/reports/research_review.md",
+      "ok": true,
+      "message": "exists"
+    },
+    {
+      "name": "live_claim_matches_candidates",
+      "ok": true,
+      "message": "live_results_claimed must only be true when live candidates exist"
+    },
+    {
+      "name": "live_capability_status",
+      "ok": true,
+      "message": "P1 must either produce live candidates or honest fixture fallback candidates"
+    },
+    {
+      "name": "douyin_probe_only",
+      "ok": true,
+      "message": "douyin must remain probe-only without login/API/browser setup"
+    },
+    {
+      "name": "xiaohongshu_probe_only",
+      "ok": true,
+      "message": "xiaohongshu must remain probe-only without login/API/browser setup"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000080",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000081",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000082",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000083",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000084",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000085",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000086",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000087",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000088",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "candidate_schema_sourcecand_000089",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000001",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000001",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000002",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000002",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000003",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000003",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000004",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000004",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000005",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000005",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000006",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000006",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000007",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000007",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000008",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000008",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000009",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000009",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    },
+    {
+      "name": "evidence_schema_evidenceobs_000010",
+      "ok": true,
+      "message": "schema ok"
+    },
+    {
+      "name": "evidence_no_full_video_claim_evidenceobs_000010",
+      "ok": true,
+      "message": "P1 evidence observation must not imply full video content was viewed"
+    }
+  ],
+  "checked_at": "2026-06-07T09:31:02.752377Z"
+}

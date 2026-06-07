@@ -1,0 +1,38 @@
+{
+  "run_id": "run_000011",
+  "platform": "fixture_youtube",
+  "url": "fixture://p1/youtube/ai-shorts-payoff",
+  "title": "find recent ordinary AI short-video formats for reproduction and transfer - AI Shorts payoff/reversal example",
+  "author": "fixture_library",
+  "account": "fixture_library",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": 98000,
+    "likes": 6400,
+    "comments": 430,
+    "shares": null,
+    "favorites": null
+  },
+  "published_at": null,
+  "collected_at": "2026-06-06T17:13:33.651871Z",
+  "query_used": "fixture query plan queryplan_000006",
+  "evidence_mode": "fixture",
+  "metadata_source": "fixture_library",
+  "live_results_claimed": false,
+  "confidence": 0.58,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Fixture-backed YouTube candidate shape; not live data.",
+  "discovery_reason": [
+    "fixture",
+    "query",
+    "fixture query plan queryplan_000006"
+  ],
+  "candidate_source_id": "sourcecand_000029",
+  "harvest_priority": 0.721,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:fixture"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "run_id": "run_000019",
+  "query_plan_id": "queryplan_000014",
+  "status": "p1_scout_completed_with_honest_fallbacks",
+  "scout_mode": "auto",
+  "live_results_claimed": true,
+  "live_candidate_count": 10,
+  "fixture_candidate_count": 0,
+  "candidate_count": 10,
+  "candidate_ids": [
+    "sourcecand_000070",
+    "sourcecand_000071",
+    "sourcecand_000072",
+    "sourcecand_000073",
+    "sourcecand_000074",
+    "sourcecand_000075",
+    "sourcecand_000076",
+    "sourcecand_000077",
+    "sourcecand_000078",
+    "sourcecand_000079"
+  ],
+  "scout_results": [
+    {
+      "platform": "search",
+      "status": "live_attempt_no_candidates",
+      "live_results_claimed": false,
+      "candidate_count": 0,
+      "capability_gaps": [
+        "duckduckgo page returned no parseable result links",
+        "rejected 5 low-relevance search results"
+      ],
+      "tool_setup_item": "toolsetup_000083"
+    },
+    {
+      "platform": "bilibili",
+      "status": "live_results_found",
+      "live_results_claimed": true,
+      "candidate_count": 5,
+      "capability_gaps": []
+    },
+    {
+      "platform": "youtube",
+      "status": "live_results_found",
+      "live_results_claimed": true,
+      "candidate_count": 5,
+      "capability_gaps": []
+    },
+    {
+      "platform": "wiki_official",
+      "status": "live_attempt_no_candidates",
+      "live_results_claimed": false,
+      "candidate_count": 0,
+      "capability_gaps": [],
+      "tool_setup_item": "toolsetup_000084"
+    },
+    {
+      "platform": "douyin",
+      "status": "probe_only",
+      "live_results_claimed": false,
+      "capabilities": {
+        "search": "requires_browser_or_api",
+        "metadata": "partial_or_unknown",
+        "comments": "requires_auth_or_browser",
+        "download_video": "blocked_or_limited"
+      },
+      "public_web_probe": {
+        "public_web_probe": "reachable",
+        "probe_url": "https://www.douyin.com/search/AI%20%E7%9F%AD%E8%A7%86%E9%A2%91%20%E7%83%AD%E9%97%A8%20%E6%A0%BC%E5%BC%8F%20%E4%BA%8C%E6%AC%A1%E5%85%83%20B%E7%AB%99%20YouTube%20Shorts",
+        "visible_metadata": "unknown_or_requires_browser_runtime",
+        "candidate_extraction": "not_attempted_without_browser_session"
+      },
+      "tool_setup_item": "toolsetup_000085",
+      "notes": "Probe only. No login, cookie, browser automation, comments, or downloads were attempted."
+    },
+    {
+      "platform": "xiaohongshu",
+      "status": "probe_only",
+      "live_results_claimed": false,
+      "capabilities": {
+        "search": "requires_browser_or_api",
+        "metadata": "partial_or_unknown",
+        "comments": "requires_auth_or_browser",
+        "download_video": "blocked_or_limited"
+      },
+      "public_web_probe": {
+        "public_web_probe": "reachable",
+        "probe_url": "https://www.xiaohongshu.com/search_result?keyword=AI%20%E7%9F%AD%E8%A7%86%E9%A2%91%20%E7%83%AD%E9%97%A8%20%E6%A0%BC%E5%BC%8F%20%E4%BA%8C%E6%AC%A1%E5%85%83%20B%E7%AB%99%20YouTube%20Shorts",
+        "visible_metadata": "page_shell_reachable",
+        "candidate_extraction": "not_attempted_without_browser_session"
+      },
+      "tool_setup_item": "toolsetup_000086",
+      "notes": "Probe only. No login, cookie, browser automation, comments, or downloads were attempted."
+    }
+  ],
+  "created_at": "2026-06-07T08:42:26.746257Z"
+}

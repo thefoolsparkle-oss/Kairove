@@ -1,0 +1,39 @@
+{
+  "run_id": "run_000019",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV1PowazHEVj",
+  "title": "2026年全网最强免费 视频 下载工具，支持8k分辨率和 B站Youtube 等各大平台，小白易上手（手机、电脑、网页）均可用",
+  "author": "MasLogin浏览器",
+  "account": "MasLogin浏览器",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": 33693,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 705,
+    "danmaku": 8
+  },
+  "published_at": "1773806845",
+  "collected_at": "2026-06-07T08:42:23.762247Z",
+  "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "confidence": 0.6,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format"
+  ],
+  "candidate_source_id": "sourcecand_000071",
+  "harvest_priority": 0.714,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

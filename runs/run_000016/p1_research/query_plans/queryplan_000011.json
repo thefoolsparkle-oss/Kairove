@@ -1,0 +1,63 @@
+{
+  "query_plan_id": "queryplan_000011",
+  "run_id": "run_000016",
+  "goal": "AI video shorts trend format examples 2026 YouTube Shorts TikTok",
+  "implementation_mode": "p1_real_source_scouts_with_fixture_fallback",
+  "rounds": [
+    {
+      "round": 1,
+      "purpose": "broad discovery",
+      "queries": [
+        {
+          "platform": "search",
+          "query": "AI video shorts trend format examples 2026 YouTube Shorts TikTok AI short video trend format",
+          "purpose": "broad web discovery"
+        },
+        {
+          "platform": "bilibili",
+          "query": "AI video shorts trend format examples 2026 YouTube Shorts TikTok AI short video hot format",
+          "purpose": "Chinese platform video discovery"
+        },
+        {
+          "platform": "youtube",
+          "query": "AI video shorts trend format examples 2026 YouTube Shorts TikTok AI shorts trend",
+          "purpose": "global AI video trend clues"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "purpose": "official/wiki reference check",
+      "queries": [
+        {
+          "platform": "wiki_official",
+          "query": "AI video shorts trend format examples 2026 YouTube Shorts TikTok official wiki reference",
+          "purpose": "official/wiki source discovery"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "purpose": "hard-platform capability probes",
+      "queries": [
+        {
+          "platform": "douyin",
+          "query": "AI video shorts trend format examples 2026 YouTube Shorts TikTok",
+          "purpose": "capability probe only"
+        },
+        {
+          "platform": "xiaohongshu",
+          "query": "AI video shorts trend format examples 2026 YouTube Shorts TikTok",
+          "purpose": "capability probe only"
+        }
+      ]
+    }
+  ],
+  "limits": {
+    "max_candidates_total": 300,
+    "max_harvested_sources_total": 60,
+    "max_format_observations": 20,
+    "max_sources_per_format_observation": 12
+  },
+  "created_at": "2026-06-07T07:49:04.362015Z"
+}

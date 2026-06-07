@@ -1,0 +1,16 @@
+{
+  "candidate_id": "candidate_000002",
+  "decision": "pass_to_packaging",
+  "publish_ready": true,
+  "failure_tags": [],
+  "allowed_values": [
+    "pass_to_packaging",
+    "retry_same_prompt",
+    "revise_prompt",
+    "replace_asset",
+    "switch_route",
+    "ask_user",
+    "abandon_job"
+  ],
+  "next_action": "build_manual_publish_package"
+}

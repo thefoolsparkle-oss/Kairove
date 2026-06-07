@@ -1,0 +1,54 @@
+{
+  "run_id": "run_000020",
+  "platform": "bilibili",
+  "url": "https://www.bilibili.com/video/BV18M1FYqEjT",
+  "title": "这4款最强 AI视频 总结神器竟然全都免费！【建议收藏】看 视频 必备！支持 B站 、 YouTube 、本地 视频 等",
+  "author": "栗氪聊AI",
+  "account": "栗氪聊AI",
+  "content_type": "video",
+  "source_type_guess": "platform_user",
+  "observed_metrics": {
+    "views": 102839,
+    "likes": null,
+    "comments": null,
+    "shares": null,
+    "favorites": 4367,
+    "danmaku": 165
+  },
+  "published_at": "1729675377",
+  "description": "喜欢的朋友可以三连+关注支持一下，这对我帮助很大～",
+  "tags": [
+    "软件",
+    "ai",
+    "工具",
+    "AI工具",
+    "视频总结",
+    "AI总结",
+    "AI",
+    "YouTube",
+    "人工智能",
+    "ai视频总结"
+  ],
+  "cover_url": "https://i2.hdslb.com/bfs/archive/8c2f58f782c998f194d1900fbe167ab23efeda40.jpg",
+  "platform_item_id": "BV18M1FYqEjT",
+  "collected_at": "2026-06-07T09:30:59.171162Z",
+  "query_used": "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format",
+  "evidence_mode": "live_metadata",
+  "metadata_source": "bilibili_public_web_search_api",
+  "live_results_claimed": true,
+  "confidence": 0.6,
+  "capability_gaps": [],
+  "requires_review": true,
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "discovery_reason": [
+    "live_metadata",
+    "query",
+    "AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI short video hot format"
+  ],
+  "candidate_source_id": "sourcecand_000080",
+  "harvest_priority": 0.783,
+  "harvest_reason": [
+    "relevant_to_query",
+    "evidence_mode:live_metadata"
+  ]
+}

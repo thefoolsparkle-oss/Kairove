@@ -1,0 +1,83 @@
+{
+  "run_id": "run_000017",
+  "query_plan_id": "queryplan_000012",
+  "status": "p1_scout_completed_with_honest_fallbacks",
+  "scout_mode": "auto",
+  "live_results_claimed": true,
+  "live_candidate_count": 5,
+  "fixture_candidate_count": 0,
+  "candidate_count": 5,
+  "candidate_ids": [
+    "sourcecand_000055",
+    "sourcecand_000056",
+    "sourcecand_000057",
+    "sourcecand_000058",
+    "sourcecand_000059"
+  ],
+  "scout_results": [
+    {
+      "platform": "search",
+      "status": "live_attempt_no_candidates",
+      "live_results_claimed": false,
+      "candidate_count": 0,
+      "capability_gaps": [
+        "duckduckgo page returned no parseable result links",
+        "rejected 5 low-relevance search results"
+      ],
+      "tool_setup_item": "toolsetup_000072"
+    },
+    {
+      "platform": "bilibili",
+      "status": "live_attempt_no_candidates",
+      "live_results_claimed": false,
+      "candidate_count": 0,
+      "capability_gaps": [
+        "duckduckgo page returned no parseable result links",
+        "bing page returned no parseable result links"
+      ],
+      "tool_setup_item": "toolsetup_000073"
+    },
+    {
+      "platform": "youtube",
+      "status": "live_results_found",
+      "live_results_claimed": true,
+      "candidate_count": 5,
+      "capability_gaps": []
+    },
+    {
+      "platform": "wiki_official",
+      "status": "live_attempt_no_candidates",
+      "live_results_claimed": false,
+      "candidate_count": 0,
+      "capability_gaps": [],
+      "tool_setup_item": "toolsetup_000074"
+    },
+    {
+      "platform": "douyin",
+      "status": "probe_only",
+      "live_results_claimed": false,
+      "capabilities": {
+        "search": "requires_browser_or_api",
+        "metadata": "partial_or_unknown",
+        "comments": "requires_auth_or_browser",
+        "download_video": "blocked_or_limited"
+      },
+      "tool_setup_item": "toolsetup_000075",
+      "notes": "Probe only. No login, cookie, browser automation, comments, or downloads were attempted."
+    },
+    {
+      "platform": "xiaohongshu",
+      "status": "probe_only",
+      "live_results_claimed": false,
+      "capabilities": {
+        "search": "requires_browser_or_api",
+        "metadata": "partial_or_unknown",
+        "comments": "requires_auth_or_browser",
+        "download_video": "blocked_or_limited"
+      },
+      "tool_setup_item": "toolsetup_000076",
+      "notes": "Probe only. No login, cookie, browser automation, comments, or downloads were attempted."
+    }
+  ],
+  "created_at": "2026-06-07T07:49:53.680682Z"
+}

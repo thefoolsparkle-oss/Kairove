@@ -1,0 +1,19 @@
+{
+  "job_id": "job_000001",
+  "route": "ordinary_ai_format_video/manual_generation_slot",
+  "steps": [
+    "understand source format",
+    "write semantic transfer brief",
+    "prepare prompt package",
+    "user or external tool generates candidate",
+    "register candidate",
+    "run basic QA",
+    "build manual publish package"
+  ],
+  "non_goals": [
+    "autonomous crawling",
+    "auto publishing",
+    "MMD/3D",
+    "longform"
+  ]
+}

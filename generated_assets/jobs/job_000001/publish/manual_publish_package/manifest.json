@@ -1,0 +1,7 @@
+{
+  "job_id": "job_000001",
+  "candidate_id": "candidate_000001",
+  "final_video": "generated_assets/jobs/job_000001/publish/manual_publish_package/final_video.mp4",
+  "payloads": "generated_assets/jobs/job_000001/publish/platform_payloads.json",
+  "readiness_report": "generated_assets/jobs/job_000001/publish/readiness_report.json"
+}

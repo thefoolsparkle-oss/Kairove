@@ -1,0 +1,71 @@
+{
+  "understanding_report_id": "understanding_000082",
+  "source_id": "source_000087",
+  "evidence_observation_id": "evidenceobs_000008",
+  "summary": "Evidence-limited understanding for youtube source: YouTube Shorts candidate for AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI shorts trend",
+  "content_type_guess": [
+    "ordinary_ai_video_format_candidate",
+    "video"
+  ],
+  "text_signals": {
+    "title_keywords": [
+      "YouTube",
+      "Shorts",
+      "candidate",
+      "for",
+      "AI",
+      "短视频",
+      "热门",
+      "格式",
+      "二次元",
+      "B站",
+      "YouTube",
+      "Shorts",
+      "AI",
+      "shorts",
+      "trend"
+    ],
+    "description_keywords": [],
+    "visible_text": [
+      "YouTube Shorts candidate for AI 短视频 热门 格式 二次元 B站 YouTube Shorts AI shorts trend"
+    ],
+    "transcript_summary": null
+  },
+  "visual_signals": {
+    "style_guess": "unknown_until_cover_or_frames_are_inspected",
+    "subject_guess": "unknown_until_cover_or_frames_are_inspected",
+    "subtitle_style_guess": "unknown_until_screenshot_or_frames",
+    "ai_generated_likelihood": null,
+    "cover_url": null
+  },
+  "audio_signals": {
+    "has_music": null,
+    "music_or_sound_role": "unknown_from_metadata_only",
+    "beat_or_hook_notes": []
+  },
+  "story_or_format_clues": {
+    "roles": [
+      "unknown_from_metadata_only"
+    ],
+    "beats": [],
+    "hook": "title/description may suggest a topic hook; video structure is not viewed yet",
+    "punchline": null,
+    "repeatable_parts": []
+  },
+  "confidence": 0.46,
+  "missing_inputs": [
+    "page_screenshot",
+    "video_frames",
+    "transcript",
+    "comments",
+    "audio_metadata",
+    "full_video_content",
+    "cover_image_url"
+  ],
+  "understanding_limits": [
+    "No full video viewing is claimed.",
+    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+    "Format inference must remain weak until richer evidence exists."
+  ],
+  "created_at": "2026-06-07T09:31:02.690600Z"
+}

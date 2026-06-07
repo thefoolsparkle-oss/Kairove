@@ -1,0 +1,38 @@
+{
+  "score_profile": "trend_video_v1",
+  "score_profile_version": "p0b_locked_2026_06_06",
+  "visible_weights": {
+    "popularity": 0.2,
+    "growth_speed": 0.2,
+    "reproduction_clarity": 0.14,
+    "production_feasibility": 0.14,
+    "asset_availability": 0.1,
+    "platform_fit": 0.1,
+    "comment_sentiment": 0.08,
+    "fatigue_or_overused_risk": -0.12
+  },
+  "scores": {
+    "popularity": 0.5,
+    "growth_speed": 0.5,
+    "reproduction_clarity": 0.55,
+    "production_feasibility": 0.6,
+    "asset_availability": 0.45,
+    "platform_fit": 0.5,
+    "comment_sentiment": 0.5,
+    "fatigue_or_overused_risk": 0.15
+  },
+  "weighted_total": 0.478,
+  "dimensions": [
+    "popularity",
+    "growth_speed",
+    "reproduction_clarity",
+    "production_feasibility",
+    "asset_availability",
+    "platform_fit",
+    "comment_sentiment",
+    "fatigue_or_overused_risk"
+  ],
+  "adjustable_by_config_or_ui_later": true,
+  "major_weight_changes_require_user_approval": true,
+  "fatigue_policy": "Fatigue is not volume-only; later phases consider comments, recent growth, and interaction quality."
+}

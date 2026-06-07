@@ -1,0 +1,68 @@
+{
+  "source_id": "source_000022",
+  "candidate_source_id": "sourcecand_000026",
+  "run_id": "run_000010",
+  "platform": "search",
+  "url": "https://www.bing.com/ck/a?!&amp;&amp;p=1dbae5963d95a48a23297c0a99ff2baa7936c494747d4b0818ff6b0107367efeJmltdHM9MTc4MDcwNDAwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2e669e4a-740d-6f84-2768-893a756f6e76&amp;u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj0yN29wZzRIVnpXOA&amp;ntb=1",
+  "title": "youtube.com https:// www.youtube.com › watch",
+  "author": null,
+  "account": null,
+  "source_type": "search_result",
+  "content_type": "topic_page",
+  "usage_policy": "reference_only",
+  "review_status": "not_required",
+  "harvest_status": "metadata_only_live",
+  "source_mode": "live_metadata",
+  "live_results_claimed": true,
+  "manual_entry": false,
+  "fixture": false,
+  "requires_review": true,
+  "files_available": {
+    "metadata": true,
+    "page_snapshot": false,
+    "raw_video": false,
+    "cover": false,
+    "screenshots": false,
+    "comments": false,
+    "transcript": false,
+    "audio_ref": false
+  },
+  "files": {
+    "metadata": "runs/run_000010/p1_research/source_candidates/sourcecand_000026.json",
+    "page_snapshot": null,
+    "raw_video": null,
+    "cover": null,
+    "screenshots": [],
+    "comments": null,
+    "transcript": null,
+    "audio_ref": null
+  },
+  "unavailable_evidence": [
+    "page_snapshot",
+    "raw_video",
+    "cover",
+    "screenshots",
+    "comments",
+    "transcript",
+    "audio_ref"
+  ],
+  "tool_setup_items_needed": [
+    "snapshot_or_browser_tool",
+    "comment_or_transcript_access",
+    "download_permission"
+  ],
+  "provenance": {
+    "source_url": "https://www.bing.com/ck/a?!&amp;&amp;p=1dbae5963d95a48a23297c0a99ff2baa7936c494747d4b0818ff6b0107367efeJmltdHM9MTc4MDcwNDAwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2e669e4a-740d-6f84-2768-893a756f6e76&amp;u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj0yN29wZzRIVnpXOA&amp;ntb=1",
+    "platform": "search",
+    "collected_at": "2026-06-06T17:12:15.126947Z",
+    "query_used": "find recent ordinary AI short-video formats for reproduction and transfer recent AI short video format",
+    "metadata_source": "duckduckgo_lite",
+    "used_by_run": "run_000010",
+    "what_was_saved": [
+      "structured_metadata"
+    ],
+    "why_saved": "P1 source intelligence metadata harvest."
+  },
+  "notes": "Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed.",
+  "created_at": "2026-06-06T17:12:15.126947Z"
+}

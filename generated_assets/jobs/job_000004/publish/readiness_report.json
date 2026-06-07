@@ -1,0 +1,43 @@
+{
+  "job_id": "job_000004",
+  "candidate_id": "candidate_000004",
+  "status": "manual_package_ready",
+  "auto_upload": false,
+  "is_test_fixture": true,
+  "real_publish_ready": false,
+  "p0b_pass_meaning": "chain_complete_traceable_human_continuable",
+  "primary_platforms": [
+    "bilibili",
+    "douyin",
+    "xiaohongshu",
+    "youtube_shorts"
+  ],
+  "platform_stubs": [
+    "tiktok",
+    "kuaishou",
+    "instagram_reels"
+  ],
+  "platforms": [
+    "bilibili",
+    "douyin",
+    "xiaohongshu",
+    "youtube_shorts",
+    "tiktok",
+    "kuaishou",
+    "instagram_reels"
+  ],
+  "checks": {
+    "candidate_file_exists": true,
+    "qa_report_present": true,
+    "metadata_present": true,
+    "cover_finalized": false
+  },
+  "manual_before_publish": [
+    "watch final video",
+    "choose title",
+    "choose cover",
+    "review platform payload",
+    "upload manually"
+  ],
+  "created_at": "2026-06-06T12:00:09.774313Z"
+}
