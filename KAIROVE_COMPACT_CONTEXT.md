@@ -34,20 +34,20 @@ Not MMD-only. MMD/3D is one specialized route.
 
 ## 2. Current Phase Status
 
-Latest P1 status correction - 2026-06-07:
+Latest P1 public metadata/evidence acceptance update - 2026-06-12:
 
 | Phase | Scope | Skeleton | Live capability | Acceptance |
 | --- | --- | --- | --- | --- |
-| P1 | confirmed | implemented and verified for the offline-safe chain | not yet implemented; only capability gaps are recorded | partial, not full planned P1 acceptance |
+| P1 | confirmed | implemented and verified | public metadata/evidence live scouts connected for Search/Bilibili/YouTube/Wiki; Douyin/XHS probe-only | public metadata P1 acceptance complete with declared gaps |
 
-Use this four-column status when discussing P1. Older wording such as "P1 implemented and verified" means only the offline-safe skeleton chain unless a later note explicitly says live scouts are working.
+Use this four-column status when discussing P1. Older wording such as "P1 implemented and verified" means only the offline-safe skeleton chain unless a later note explicitly says live scouts are working. As of run_000034, P1 is accepted for the public metadata/evidence foundation, not for platform deep-content automation.
 
 Strict status:
 
 ```text
 Discussed boundary: Phase 0 = P0-B Lowest Complete Production Chain
 P0-A Foundation Skeleton is included inside P0-B as the foundation subset
-Discussed broad direction: Phase 1 = Trend and Source Intelligence Foundation; implementation not authorized
+Phase 1 = Trend and Source Intelligence Foundation; public metadata/evidence implementation accepted with declared gaps
 Detailed planning drafts: Phase 2 through Phase 11
 P2-P11 are not confirmed for implementation until explicitly accepted or scheduled
 ```
@@ -241,7 +241,7 @@ Next useful move:
 ```text
 P0-B final include/exclude list and acceptance criteria are locked. P0-B implementation was explicitly authorized and completed for the current offline chain.
 P0-B1 through P0-B7 are internal implementation order, not separate approval gates.
-Phase 1 offline-safe skeleton is implemented and verified; real online scouts are still pending.
+Phase 1 public metadata/evidence foundation is implemented and accepted with declared gaps.
 P2-P11 detailed planning drafts exist; implementation is not confirmed.
 No P2+ coding order is active until the user explicitly authorizes implementation of another named phase.
 ```
@@ -291,7 +291,7 @@ P0-B uses JSON config files instead of YAML to stay dependency-free. This is an 
 Current next likely work:
 
 ```text
-P0-B is complete for its current offline acceptance chain. P1 offline-safe skeleton is complete, but real online scouts remain the next P1 implementation target. Do not implement P2+ until the user explicitly approves coding for a named phase.
+P0-B is complete for its current offline acceptance chain. P1 public metadata/evidence foundation is accepted with declared gaps. Do not implement P2+ until the user explicitly approves coding for a named phase.
 ```
 ---
 
@@ -307,7 +307,7 @@ Current mode:
 
 ```text
 P0-B implementation was authorized and completed for the current offline chain.
-P1 implementation was authorized and completed only for the current offline-safe acceptance chain; real-source scout implementation remains incomplete.
+P1 implementation was authorized and completed for the public metadata/evidence acceptance chain; deep-content platform automation remains outside the accepted P1 scope.
 No additional P2+ code unless the user explicitly approves implementation of a named phase.
 ```
 
@@ -320,9 +320,9 @@ P0 / P0-B:
 
 P1:
   Scope confirmed.
-  Current offline-safe skeleton completed and verified.
-  Live capability not yet implemented; only capability gaps recorded.
-  Acceptance partial, not full planned P1 acceptance.
+  Public metadata/evidence foundation completed and verified.
+  Live capability connected for public metadata/evidence scouts; Douyin/XHS probe-only.
+  Acceptance complete for public metadata/evidence foundation with declared gaps.
 
 P2-P9:
   Detailed planning drafts only, not confirmed for implementation.

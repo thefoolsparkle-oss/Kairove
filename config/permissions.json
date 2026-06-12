@@ -2,7 +2,8 @@
   "permissions": {
     "research.web_search": "allow_with_limits",
     "research.collect_metadata": "allow",
-    "research.download_reference_assets": "ask",
+    "research.download_reference_assets": "allow_with_limits",
+    "research.browser_screenshot": "allow_with_limits",
     "research.fetch_comments": "ask",
     "asset.use_official_assets_directly": "allow",
     "asset.use_personal_creator_assets_directly": "ask",

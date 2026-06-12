@@ -1,3 +1,9 @@
 config/secrets.local.json
 *.pyc
 __pycache__/
+runs/run_*/
+research_assets/covers/
+research_assets/raw_pages/
+research_assets/screenshots/
+research_assets/manifests/assets/
+research_assets/manifests/sources/source_*.json

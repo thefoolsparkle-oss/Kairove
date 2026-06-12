@@ -66,13 +66,19 @@ It separates:
 
 ```text
 observed evidence:
-  title, description, tags, cover URL, page screenshot, transcript, comments, frames, audio metadata when available
+  title, description, tags, cover URL, cover file, public HTML page snapshot, page metadata, page screenshot, transcript, comments, frames, audio metadata when available
 
 missing evidence:
   anything not collected or not technically/permission-wise available
 ```
 
 Understanding reports must be generated from EvidenceObservations, not directly from SourceCandidates.
+
+When policy allows limited reference-asset download, P1 may store source cover/thumbnail images as `analysis_only` research assets. Cover files support weak packaging observation, not claims about full video content, rhythm, story, audio, comments, or transcript.
+
+When metadata collection is allowed, P1 may store a public HTML page snapshot under `raw_pages/`, extract basic meta tags, and keep a limited set of public visible text snippets. This is not a browser screenshot or logged-in platform view, and it must not be used to claim that the video itself, comments, transcript, or recommendation context was viewed.
+
+When `research.browser_screenshot` is allowed and a browser runtime exists, P1 may store one unauthenticated public browser screenshot as `analysis_only` evidence. It also records basic image quality metadata such as dimensions, file size, nonblank score, and likely blank/single-color status. It must not use user cookies, logged-in sessions, platform bypasses, or scrolling/comment capture unless a later permission explicitly allows that work.
 
 ### 2.3 Asset
 
@@ -904,11 +910,11 @@ This layer may create review items for:
 
 ```text
 research_assets/
-  raw_pages/
+  raw_pages/       # public HTML snapshots and extracted page metadata, not logged-in screenshots
   raw_videos/
   raw_audio_refs/
-  screenshots/
-  covers/
+  screenshots/     # optional unauthenticated public browser screenshots, analysis_only
+  covers/          # small cover/thumbnail evidence only, analysis_only
   comments/
   transcripts/
   understanding/

@@ -18,16 +18,16 @@ E:\影潮枢_Kairove
 
 ## 2. Roadmap Correction
 
-Latest P1 four-column status - 2026-06-07:
+Latest P1 four-column status - 2026-06-12:
 
 | Scope | Skeleton | Live capability | Acceptance |
 | --- | --- | --- | --- |
-| confirmed | implemented and verified for the offline-safe chain | not yet implemented; only capability gaps are recorded | partial, not full planned P1 acceptance |
+| confirmed | implemented and verified | public metadata/evidence live scouts connected for Search/Bilibili/YouTube/Wiki; Douyin/XHS probe-only | public metadata P1 acceptance complete with declared gaps |
 
 Interpretation rule:
 
 ```text
-Older shorthand such as "P1 implemented and verified" means only the offline-safe skeleton unless a later status explicitly says real online scouts are implemented and accepted.
+Older shorthand such as "P1 implemented and verified" means only the offline-safe skeleton unless a later status explicitly says real online scouts are implemented and accepted. As of `run_000034`, P1 acceptance means the public metadata/evidence scout foundation, not deep platform automation.
 ```
 
 Strict status:
@@ -35,7 +35,7 @@ Strict status:
 ```text
 Phase 0 discussed boundary: P0-B Lowest Complete Production Chain; implementation is not authorized.
 P0-A Foundation Skeleton is included inside P0-B as a proposed foundation subset.
-Phase 1 broad direction has been discussed; implementation is not authorized.
+Phase 1 public metadata/evidence implementation is accepted with declared gaps.
 Phase 2 through Phase 11 detailed planning docs exist.
 P2-P11 are not confirmed for implementation until explicitly accepted or scheduled.
 ```
@@ -244,7 +244,7 @@ Current next target:
 
 ```text
 P0-B is the confirmed Phase 0 shape. Implementation was explicitly authorized and completed for the current offline chain.
-P1 offline-safe skeleton is implemented and verified; real online scouts remain pending.
+P1 public metadata/evidence foundation is implemented and accepted with declared gaps.
 P2-P11 detailed planning drafts exist, but are not confirmed for implementation.
 No P2+ coding order is active until the user explicitly authorizes implementation of a named phase.
 ```
@@ -263,7 +263,7 @@ Active root Markdown count after P3-P9 expansion:
 We are working on Kairove in E:\影潮枢_Kairove.
 Read KAIROVE_COMPACT_CONTEXT.md, READING_GUIDE.md, and PROJECT_INDEX.md first.
 Do not write code unless explicitly asked.
-Phase 0 is implemented as P0-B Lowest Complete Production Chain for the current offline chain. Phase 1 has a verified offline-safe skeleton, but real online scouts are still pending. P2-P11 detailed planning drafts exist but are not confirmed for implementation.
+Phase 0 is implemented as P0-B Lowest Complete Production Chain for the current offline chain. Phase 1 public metadata/evidence foundation is accepted with declared gaps. P2-P11 detailed planning drafts exist but are not confirmed for implementation.
 Do not treat archived merged docs as active root plans.
 ```
 ---
@@ -319,7 +319,7 @@ Current phase implementation permission:
 | Phase | Boundary Status | Implementation Permission |
 | --- | --- | --- |
 | P0 / P0-B | Final include/exclude list and acceptance criteria locked | Implemented and verified for current offline chain |
-| P1 | Scope confirmed | Skeleton verified for current offline-safe chain; live capability pending; acceptance partial |
+| P1 | Scope confirmed | Public metadata/evidence foundation accepted; deep-content platform automation remains a declared gap |
 | P2-P9 | Detailed drafts exist | Not authorized |
 | P10 MMD/3D | Specialized draft exists | Not authorized; separate discussion needed |
 | P11 Longform | Specialized draft exists | Not authorized; separate discussion needed |

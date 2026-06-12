@@ -1,14 +1,14 @@
 # Kairove Phase 1: Trend and Source Intelligence Foundation
 
-## Latest P1 Status Correction - 2026-06-07
+## Latest P1 Status Correction - 2026-06-12
 
 | Scope | Skeleton | Live capability | Acceptance |
 | --- | --- | --- | --- |
-| confirmed | implemented and verified for the offline-safe chain | not yet implemented; only capability gaps are recorded | partial, not full planned P1 acceptance |
+| confirmed | implemented and verified | public metadata/evidence live scouts connected for Search/Bilibili/YouTube/Wiki; Douyin/XHS probe-only | public metadata P1 acceptance complete with declared gaps |
 
-The existing P1 runtime proves the offline-safe structure: query plan, fixture-backed candidates, metadata-only source manifests, understanding reports, weak format observation, TrendOpportunityPacket, research review report, and self-check report.
+The current P1 runtime proves the public metadata/evidence source intelligence foundation: query plan, live/fixture/manual candidate normalization, broad Search/Bilibili/YouTube/Wiki public metadata scouts, Douyin/XHS capability probes, source manifests, cover evidence, public HTML snapshots, unauthenticated browser screenshots, EvidenceObservations, Understanding Reports, weak Format Observation, TrendOpportunityPacket, research review report, and self-check report.
 
-It does **not** mean full P1 is complete. Real-source scouts for broad web search, wiki/official pages, YouTube, and Bilibili still need implementation and verification. Douyin/Xiaohongshu remain capability-probe and semi-automatic entry points unless login/API/browser setup is explicitly available.
+It does **not** mean platform deep-content automation is complete. Douyin/Xiaohongshu remain capability-probe and semi-automatic entry points unless login/API/browser setup is explicitly available. Comments/danmaku, transcript/audio analysis, video frame sampling/download, and logged-in recommendation context remain declared gaps.
 
 P1 correction:
 
@@ -501,16 +501,36 @@ SourceCandidate
   "url": "...",
   "evidence_mode": "live_metadata | fixture | manual_seed | browser_assisted_metadata",
   "metadata_source": "youtube_data_api_v3_search | bilibili_public_web_search_api | ...",
-  "available_inputs": ["url", "title", "description", "cover_url"],
+  "available_inputs": ["url", "title", "description", "cover_url", "cover_file", "page_snapshot_file", "page_metadata"],
   "missing_inputs": ["page_screenshot", "video_frames", "transcript", "comments", "audio_metadata", "full_video_content"],
-  "observed_text": {},
-  "observed_visual": {},
+  "observed_text": {"page_metadata": {}},
+  "observed_visual": {"page_snapshot_file": null},
   "observed_metrics": {},
   "understanding_limits": [],
   "next_evidence_needed": [],
   "requires_review": true
 }
 ```
+
+Current detail metadata sources may include:
+
+```text
+YouTube:
+  search.list for candidate discovery
+  videos.list for title, channel, published_at, description, tags, thumbnail URL, duration, caption flag, and basic statistics
+
+Bilibili:
+  public web search metadata for candidate discovery
+  public x/web-interface/view metadata for title, owner, description, cover URL, duration, dimensions, pages, and basic statistics
+```
+
+These are still metadata observations, not full viewing of video content.
+
+If `research.download_reference_assets` is `allow` or `allow_with_limits`, P1 may save small cover/thumbnail images as `analysis_only` research assets. This is a lightweight evidence upgrade for packaging and visual-reference observation only. It still does not count as video viewing, frame sampling, transcript access, comment collection, or media download.
+
+If `research.collect_metadata` is `allow` or `allow_with_limits`, P1 may save a small public HTML page snapshot and extracted page metadata (`title`, `description`, `og:*`, `twitter:*`) when the source URL is openly reachable. It may also extract a limited set of public visible text snippets from the saved HTML. This is public page metadata/text evidence only. It is not a browser screenshot, logged-in view, comment capture, video frame sample, transcript, or full content verification.
+
+If `research.browser_screenshot` is `allow` or `allow_with_limits` and a browser runtime is available, P1 may save one public browser screenshot per harvested source. This screenshot must use a fresh unauthenticated browser context with no login cookies. P1 records basic screenshot quality metadata such as dimensions, file size, and a nonblank score so blank/error screenshots can be downgraded. It is visual page evidence only; it is not video frame sampling, not comment capture, not logged-in recommendation context, and not proof that the video content was watched.
 
 ### Acceptance
 
@@ -904,9 +924,9 @@ Current status:
 ```text
 P1 scope: confirmed
 P1 default answers: accepted
-P1 implementation: offline-safe skeleton completed and verified
-P1 live capability: pending real-source scout implementation
-P1 acceptance: partial; full planned P1 acceptance is not yet met
+P1 implementation: public metadata/evidence foundation completed and verified
+P1 live capability: Search/Bilibili/YouTube/Wiki public metadata scouts connected; Douyin/XHS probe-only
+P1 acceptance: public metadata P1 acceptance complete with declared gaps
 P1 confirmation: accepted by user
 P1 implementation mode: one continuous P1 batch
 ```
@@ -914,7 +934,7 @@ P1 implementation mode: one continuous P1 batch
 Current implementation result:
 
 ```text
-P1 can create query plans, record scout capability gaps, produce fixture-backed normalized SourceCandidates, harvest metadata-only Sources, create Understanding Reports, create weak Format Observations, create TrendOpportunityPackets, write Research Review Reports, and write P1 self-check reports.
+P1 can create query plans, record scout capability gaps, produce fixture/live/manual normalized SourceCandidates, harvest metadata/evidence Sources, save cover evidence, public HTML snapshots, unauthenticated browser screenshots, create EvidenceObservations, create Understanding Reports, create weak Format Observations, create TrendOpportunityPackets, write Research Review Reports, and write P1 self-check reports.
 No live platform/API results are claimed in offline fixture mode.
 ```
 
@@ -926,7 +946,7 @@ Future changes to P1 scope should edit section 34 before coding changes are made
 
 Merged from `PHASE1_IMPLEMENTATION_BRIEF.md`.
 
-P1 is confirmed in scope and implemented for the current offline-safe skeleton chain. Real online scouts remain pending.
+P1 is confirmed in scope and implemented for the public metadata/evidence acceptance chain. Deep-content platform automation remains a declared gap.
 
 Core outputs:
 
@@ -1376,12 +1396,12 @@ If download is not possible, P1 should still save metadata and create a capabili
 
 ## 33. P1 Recommended Implementation Mode
 
-P1 is confirmed in scope and implemented for the current offline-safe skeleton chain. Real online scouts remain pending.
+P1 is confirmed in scope and implemented for the public metadata/evidence acceptance chain. Deep-content platform automation remains a declared gap.
 
 Confirmed implementation mode:
 
 ```text
-P1 was implemented as one continuous phase batch for the current offline-safe skeleton chain. Real-source scout work continues inside P1.
+P1 was implemented as one continuous phase batch for the public metadata/evidence acceptance chain. Further deep-content source work requires explicit permission because it involves higher-risk capabilities.
 P1-A through P1-K are internal implementation order, not separate phases.
 ManualSeedScout remains auxiliary.
 Do not stop after manual-link support.

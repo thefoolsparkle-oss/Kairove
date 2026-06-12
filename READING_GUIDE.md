@@ -53,11 +53,12 @@ Current status:
 
 ```text
 P1 scope is confirmed.
-Skeleton: implemented and verified for the current offline-safe chain.
-Live capability: not yet implemented; only capability gaps are recorded.
-Acceptance: partial, not full planned P1 acceptance.
-P1 demo output is under runs/run_000007/p1_research/.
+Skeleton: implemented and verified.
+Live capability: public metadata/evidence live scouts connected for Search/Bilibili/YouTube/Wiki; Douyin/XHS remain probe-only.
+Acceptance: public metadata P1 acceptance complete with declared gaps.
+Latest P1 acceptance demo output is under runs/run_000034/p1_research/.
 P1 does not claim live platform/API results in offline fixture mode.
+P1 public metadata acceptance does not claim comments/danmaku, transcript/audio analysis, video frame sampling/download, logged-in recommendation context, or full video content understanding.
 ```
 
 ---
@@ -351,7 +352,7 @@ Current phase status:
 
 ```text
 P0: discussed and detailed, implementation not authorized
-P1: scope confirmed; offline-safe skeleton verified; live scouts not fully implemented
+P1: scope confirmed; public metadata/evidence foundation accepted with declared gaps
 P2-P11: detailed planning drafts exist, not confirmed for implementation
 P12+: not defined
 ```

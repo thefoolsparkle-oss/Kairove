@@ -34,6 +34,7 @@ DEFAULT_PERMISSIONS = {
     "research.web_search": "ask",
     "research.collect_metadata": "allow",
     "research.download_reference_assets": "ask",
+    "research.browser_screenshot": "ask",
     "research.download_assets": "ask",
     "research.large_scale_downloads": "ask",
     "research.fetch_comments": "ask",

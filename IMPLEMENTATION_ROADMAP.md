@@ -2,13 +2,13 @@
 
 ## 0. Correction
 
-Latest P1 status correction - 2026-06-07:
+Latest P1 status correction - 2026-06-12:
 
 | Scope | Skeleton | Live capability | Acceptance |
 | --- | --- | --- | --- |
-| confirmed | implemented and verified for the offline-safe chain | not yet implemented; only capability gaps are recorded | partial, not full planned P1 acceptance |
+| confirmed | implemented and verified | public metadata/evidence live scouts connected for Search/Bilibili/YouTube/Wiki; Douyin/XHS probe-only | public metadata P1 acceptance complete with declared gaps |
 
-This status overrides older shorthand. "P1 implemented and verified" means the offline-safe skeleton only, not the full Trend and Source Intelligence Foundation.
+This status overrides older shorthand. "P1 implemented and verified" previously meant the offline-safe skeleton only. As of `run_000034`, P1 is accepted for the public metadata/evidence Trend and Source Intelligence foundation, not for deep platform automation.
 
 This roadmap is **not** a fixed Phase 0 -> Phase 20 implementation plan.
 
@@ -26,7 +26,7 @@ Current status:
 ```text
 Phase 0 discussed boundary: P0-B Lowest Complete Production Chain; implementation is not authorized.
 P0-A Foundation Skeleton is included inside P0-B as a proposed foundation subset, not a separate competing phase.
-Phase 1 broad direction has been discussed; implementation is not authorized.
+Phase 1 public metadata/evidence implementation is accepted with declared gaps.
 Phase 2 through Phase 11 detailed planning docs exist; none of P2-P11 are confirmed for implementation.
 ```
 
@@ -532,7 +532,7 @@ P0-B1 through P0-B7 are internal implementation order, not separate user approva
 Current no-code planning target:
 
 ```text
-P0-B final include/exclude list and acceptance criteria are locked. Phase 1 offline-safe skeleton is implemented and verified, while real online scouts remain the active P1 gap. Do not move to P2 until the user explicitly says to start P2.
+P0-B final include/exclude list and acceptance criteria are locked. Phase 1 public metadata/evidence foundation is implemented and accepted with declared gaps. Do not move to P2 until the user explicitly says to start P2.
 ```
 
 P0-B internal workstream order:
@@ -1267,7 +1267,7 @@ phase report
 offline/manual-slot tests
 ```
 
-P1 offline-safe skeleton is implemented and verified; real online scouts remain pending and P1 acceptance is still partial. No P2+ coding order is active until the user explicitly authorizes implementation of a named phase.
+P1 public metadata/evidence foundation is implemented and accepted with declared gaps. No P2+ coding order is active until the user explicitly authorizes implementation of a named phase.
 ---
 
 ## 24. Documentation During Coding Policy
@@ -2141,7 +2141,7 @@ unreviewed long video publishing
 
 ## 40. Phase Map Rules
 
-1. P0-B is implemented and verified for its current offline acceptance chain; P1 has only its offline-safe skeleton implemented and verified.
+1. P0-B is implemented and verified for its current offline acceptance chain; P1 public metadata/evidence foundation is implemented and accepted with declared gaps.
 2. P2-P11 now have canonical detailed planning drafts.
 3. P2-P11 are not confirmed for implementation until explicitly accepted or scheduled.
 4. Do not create P12+ canonical docs unless the user chooses to extend the roadmap.
@@ -2217,7 +2217,7 @@ Current mode:
 
 ```text
 P0-B implementation was explicitly authorized and completed for the current offline chain.
-P1 implementation was explicitly authorized and completed for the current offline-safe acceptance chain only; real online scouts are not yet fully implemented or accepted.
+P1 implementation was explicitly authorized and completed for the public metadata/evidence acceptance chain; deep-content platform automation remains outside accepted P1.
 Do not write P2+ code until the user explicitly says to start implementing another named phase.
 ```
 
@@ -2245,7 +2245,7 @@ Phase status table:
 | --- | --- | --- | --- | --- |
 | P0 | P0-B Lowest Complete Production Chain | Final include/exclude list and acceptance criteria locked | Implemented and verified for current offline chain | Re-check P1 exact boundary next |
 | P0-A | Foundation Skeleton | Not an independent phase; subset inside P0-B | Not separate | Keep as internal P0-B foundation workstream |
-| P1 | Trend and Source Intelligence Foundation | Scope confirmed | Skeleton verified for current offline-safe chain; live capability pending; acceptance partial | Continue P1 real-source scout implementation |
+| P1 | Trend and Source Intelligence Foundation | Scope confirmed | Public metadata/evidence foundation accepted with declared gaps | Do not move to P2 until explicitly authorized |
 | P2 | Format Intelligence and Opportunity Decision | Detailed draft exists | Not authorized | Discuss because Format Miner / Trend Analyst are core and need careful confirmation |
 | P3 | Reproduction Planning, Semantic Transfer, Script, Direction | Detailed draft exists | Not authorized | Confirm ordinary imitation/adaptation workflow versus short-drama-only workflow |
 | P4 | Asset Resolution, Character/World Knowledge, Audio/Visual Material | Detailed draft exists | Not authorized | Confirm asset search, official/wiki/reference/local-asset policy and folder contracts |

@@ -3,13 +3,14 @@ from __future__ import annotations
 import json
 import os
 import re
+import http.client
 import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
 from typing import Any
 
-from .core import connect, ensure_dir, ensure_project, fetch_one, next_id, read_json, rel, root_path, utc_now, write_human_text, write_json
+from .core import connect, ensure_dir, ensure_project, fetch_one, next_id, read_json, rel, root_path, sha256_file, utc_now, write_human_text, write_json
 from .p0b import create_run, create_tool_setup_item, write_decision
 
 P1_LIVE_SCOUTS = ["search", "bilibili", "youtube", "wiki_official"]
@@ -48,6 +49,18 @@ def _permission_value(root: Path, capability: str, default: str = "ask") -> str:
         return str(read_json(root / "config" / "permissions.json").get("permissions", {}).get(capability, default))
     except FileNotFoundError:
         return default
+
+
+def _cover_download_allowed(root: Path) -> bool:
+    return _permission_value(root, "research.download_reference_assets") in LIVE_ALLOWED_STATES
+
+
+def _page_snapshot_allowed(root: Path) -> bool:
+    return _permission_value(root, "research.collect_metadata") in LIVE_ALLOWED_STATES
+
+
+def _browser_screenshot_allowed(root: Path) -> bool:
+    return _permission_value(root, "research.browser_screenshot") in LIVE_ALLOWED_STATES
 
 
 def _secrets(root: Path) -> dict[str, Any]:
@@ -127,6 +140,7 @@ def _make_candidate(
     tags: list[str] | None = None,
     cover_url: str | None = None,
     platform_item_id: str | None = None,
+    extra_metadata: dict[str, Any] | None = None,
     confidence: float = 0.4,
     capability_gaps: list[str] | None = None,
     requires_review: bool = True,
@@ -147,6 +161,7 @@ def _make_candidate(
         "tags": tags or [],
         "cover_url": cover_url,
         "platform_item_id": platform_item_id,
+        "extra_metadata": extra_metadata or {},
         "collected_at": utc_now(),
         "query_used": query_used,
         "evidence_mode": evidence_mode,
@@ -167,6 +182,24 @@ def _fetch_text(url: str, timeout: float = 8.0) -> str:
         return response.read(700_000).decode(charset, errors="replace")
 
 
+def _fetch_image_bytes(url: str, timeout: float = 8.0, max_bytes: int = 3_000_000) -> tuple[bytes | None, str | None, str | None]:
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme not in {"http", "https"}:
+        return None, None, "cover URL is not http/https"
+    req = urllib.request.Request(url, headers={"User-Agent": "Kairove-P1-Scout/0.1 (+cover evidence only)"})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as response:
+            content_type = response.headers.get("content-type", "").split(";")[0].lower()
+            if not content_type.startswith("image/"):
+                return None, content_type, f"cover URL returned non-image content-type: {content_type}"
+            data = response.read(max_bytes + 1)
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        return None, None, f"cover image request failed: {exc}"
+    if len(data) > max_bytes:
+        return None, content_type, "cover image exceeds size limit"
+    return data, content_type, None
+
+
 def _fetch_text_with_ephemeral_cookies(url: str, bootstrap_url: str, referer: str, timeout: float = 8.0) -> str:
     import http.cookiejar
 
@@ -185,6 +218,85 @@ def _clean_html_text(value: str) -> str:
 
 def _clean_bilibili_title(value: str) -> str:
     return _clean_html_text(value.replace("\\u003C", "<").replace("\\u003E", ">").replace("\\/", "/"))
+
+
+def _html_attr(tag: str, attr: str) -> str | None:
+    match = re.search(rf'\b{re.escape(attr)}\s*=\s*["\']([^"\']+)["\']', tag, re.I)
+    return urllib.parse.unquote(match.group(1)).strip() if match else None
+
+
+def _extract_page_metadata(html: str) -> dict[str, Any]:
+    title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
+    metadata: dict[str, Any] = {
+        "title": _clean_html_text(title_match.group(1)) if title_match else None,
+        "meta": {},
+        "open_graph": {},
+        "twitter": {},
+    }
+    for tag in re.findall(r"<meta\b[^>]*>", html, re.I | re.S):
+        name = _html_attr(tag, "name")
+        prop = _html_attr(tag, "property")
+        content = _html_attr(tag, "content")
+        if not content:
+            continue
+        cleaned = _clean_html_text(content)
+        if name:
+            key = name.lower()
+            if key.startswith("twitter:"):
+                metadata["twitter"][key] = cleaned
+            else:
+                metadata["meta"][key] = cleaned
+        if prop and prop.lower().startswith("og:"):
+            metadata["open_graph"][prop.lower()] = cleaned
+    return metadata
+
+
+def _extract_visible_text_snippets(html: str, limit: int = 12) -> list[str]:
+    cleaned = re.sub(r"(?is)<(script|style|noscript|svg|canvas)\b.*?</\1>", " ", html)
+    snippets: list[str] = []
+    for tag_name, body in re.findall(r"(?is)<(h1|h2|h3|p|a|span|div)\b[^>]*>(.*?)</\1>", cleaned):
+        text = _clean_html_text(body)
+        if len(text) < 8:
+            continue
+        if any(text == existing or text in existing or existing in text for existing in snippets):
+            continue
+        snippets.append(text[:240])
+        if len(snippets) >= limit:
+            break
+    return snippets
+
+
+def _image_basic_observation(path: Path) -> dict[str, Any]:
+    observation: dict[str, Any] = {"file_size_bytes": path.stat().st_size if path.exists() else 0}
+    try:
+        from PIL import Image
+    except Exception as exc:
+        observation["analysis_error"] = f"PIL unavailable: {exc}"
+        return observation
+    try:
+        with Image.open(path) as image:
+            image = image.convert("RGB")
+            width, height = image.size
+            small = image.resize((min(width, 64), min(height, 64)))
+            pixels = list(small.getdata())
+    except Exception as exc:
+        observation["analysis_error"] = f"image open failed: {exc}"
+        return observation
+    if not pixels:
+        observation.update({"width": width, "height": height, "unique_color_count": 0, "nonblank_score": 0.0, "likely_blank_or_single_color": True})
+        return observation
+    unique_colors = len(set(pixels))
+    channels = list(zip(*pixels))
+    channel_ranges = [max(channel) - min(channel) for channel in channels]
+    nonblank_score = min(1.0, (unique_colors / max(len(pixels), 1)) * 2.5 + (sum(channel_ranges) / 765.0) * 0.5)
+    observation.update({
+        "width": width,
+        "height": height,
+        "unique_color_count": unique_colors,
+        "nonblank_score": round(nonblank_score, 4),
+        "likely_blank_or_single_color": unique_colors <= 4 or nonblank_score < 0.03,
+    })
+    return observation
 
 
 def _search_duckduckgo_lite(query: str, max_results: int = 5) -> tuple[list[dict[str, str]], list[str]]:
@@ -268,12 +380,64 @@ def _result_is_relevant(result: dict[str, str], platform: str) -> bool:
 
 
 def _wiki_official_results(query: str, max_results: int = 5) -> tuple[list[dict[str, str]], list[str]]:
-    params = urllib.parse.urlencode({"action": "opensearch", "search": query, "limit": max_results, "namespace": 0, "format": "json"})
-    try:
-        data = json.loads(_fetch_text(f"https://en.wikipedia.org/w/api.php?{params}"))
-    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
-        return [], [f"wiki opensearch failed: {exc}"]
-    return [{"title": title, "url": url} for title, url in zip(data[1] if len(data) > 1 else [], data[3] if len(data) > 3 else [])], []
+    gaps: list[str] = []
+    search_terms = [query]
+    lower = query.lower()
+    if "youtube" in lower or "shorts" in lower:
+        search_terms.append("YouTube Shorts")
+    if "bilibili" in lower or "b站" in query:
+        search_terms.append("Bilibili")
+    if "ai" in lower or "artificial" in lower:
+        search_terms.extend(["Generative artificial intelligence", "Artificial intelligence art"])
+    results: list[dict[str, str]] = []
+    seen_urls: set[str] = set()
+    for term in search_terms:
+        params = urllib.parse.urlencode({"action": "opensearch", "search": term, "limit": max_results, "namespace": 0, "format": "json"})
+        try:
+            data = json.loads(_fetch_text(f"https://en.wikipedia.org/w/api.php?{params}"))
+        except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+            gaps.append(f"wiki opensearch failed for {term}: {exc}")
+            continue
+        for title, url in zip(data[1] if len(data) > 1 else [], data[3] if len(data) > 3 else []):
+            if url in seen_urls:
+                continue
+            seen_urls.add(url)
+            results.append({"title": title, "url": url, "metadata_source": "wikipedia_opensearch"})
+            if len(results) >= max_results:
+                return results, gaps
+    if not results:
+        gaps.append("wiki opensearch returned no reference candidates after fallback terms")
+    return results, gaps
+
+
+def _reachable_public_seed_results(query: str, max_results: int = 3) -> tuple[list[dict[str, Any]], list[str]]:
+    seeds = [
+        ("YouTube Shorts official help", "https://support.google.com/youtube/answer/10059070"),
+        ("YouTube Shorts creator page", "https://www.youtube.com/creators/shorts/"),
+        ("Bilibili public popular page", "https://www.bilibili.com/v/popular/all"),
+    ]
+    results: list[dict[str, Any]] = []
+    gaps: list[str] = []
+    for fallback_title, url in seeds:
+        try:
+            html = _fetch_text(url)
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            gaps.append(f"official seed unreachable {url}: {exc}")
+            continue
+        metadata = _extract_page_metadata(html)
+        title = metadata.get("title") or fallback_title
+        results.append({
+            "url": url,
+            "title": title,
+            "description": metadata.get("meta", {}).get("description") if isinstance(metadata.get("meta"), dict) else None,
+            "metadata_source": "official_reachable_seed",
+            "extra_metadata": {"seed_reason": "verified public URL fallback for broad source discovery", "query": query},
+        })
+        if len(results) >= max_results:
+            break
+    if not results:
+        gaps.append("official reachable seed fallback produced no verified public URLs")
+    return results, gaps
 
 
 def _platform_search_query(query: str, platform: str) -> str:
@@ -289,7 +453,7 @@ def _bilibili_public_web_results(query: str, max_results: int = 5) -> tuple[list
     url = f"https://api.bilibili.com/x/web-interface/search/type?{params}"
     try:
         data = json.loads(_fetch_text_with_ephemeral_cookies(url, "https://www.bilibili.com/", "https://www.bilibili.com/"))
-    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+    except (urllib.error.URLError, TimeoutError, OSError, http.client.IncompleteRead, json.JSONDecodeError) as exc:
         return [], [f"bilibili public web search failed: {exc}"]
     if data.get("code") != 0:
         return [], [f"bilibili public web search returned code {data.get('code')}"]
@@ -320,10 +484,61 @@ def _bilibili_public_web_results(query: str, max_results: int = 5) -> tuple[list
                 "favorites": item.get("favorites"),
                 "danmaku": item.get("video_review"),
             },
+            "extra_metadata": {"search_result_rank_source": "bilibili_public_web_search"},
         })
         if len(results) >= max_results:
             break
-    return (results, []) if results else ([], ["bilibili public web search returned no video candidates"])
+    detail_gaps: list[str] = []
+    for item in results:
+        detail, gap = _bilibili_public_view_detail(str(item.get("platform_item_id") or ""))
+        if detail:
+            item.update({key: value for key, value in detail.items() if value is not None})
+            item["metadata_source"] = "bilibili_public_web_search_api+view"
+        if gap:
+            detail_gaps.append(gap)
+    return (results, detail_gaps) if results else ([], ["bilibili public web search returned no video candidates"])
+
+
+def _bilibili_public_view_detail(bvid: str) -> tuple[dict[str, Any], str | None]:
+    if not bvid:
+        return {}, "bilibili detail skipped: missing bvid"
+    url = "https://api.bilibili.com/x/web-interface/view?" + urllib.parse.urlencode({"bvid": bvid})
+    try:
+        data = json.loads(_fetch_text_with_ephemeral_cookies(url, "https://www.bilibili.com/", "https://www.bilibili.com/"))
+    except (urllib.error.URLError, TimeoutError, OSError, http.client.IncompleteRead, json.JSONDecodeError) as exc:
+        return {}, f"bilibili public view detail failed for {bvid}: {exc}"
+    if data.get("code") != 0:
+        return {}, f"bilibili public view detail returned code {data.get('code')} for {bvid}"
+    detail = data.get("data", {})
+    owner = detail.get("owner", {}) if isinstance(detail.get("owner"), dict) else {}
+    stat = detail.get("stat", {}) if isinstance(detail.get("stat"), dict) else {}
+    pages = detail.get("pages", []) if isinstance(detail.get("pages"), list) else []
+    tags = detail.get("tname")
+    return {
+        "title": detail.get("title"),
+        "author": owner.get("name"),
+        "description": detail.get("desc"),
+        "cover_url": detail.get("pic"),
+        "published_at": str(detail.get("pubdate")) if detail.get("pubdate") else None,
+        "tags": [tags] if tags else None,
+        "observed_metrics": {
+            "views": stat.get("view"),
+            "likes": stat.get("like"),
+            "comments": stat.get("reply"),
+            "shares": stat.get("share"),
+            "favorites": stat.get("favorite"),
+            "danmaku": stat.get("danmaku"),
+            "coins": stat.get("coin"),
+        },
+        "extra_metadata": {
+            "duration_seconds": detail.get("duration"),
+            "cid": detail.get("cid"),
+            "aid": detail.get("aid"),
+            "page_count": len(pages),
+            "dimension": detail.get("dimension"),
+            "detail_source": "bilibili_x_web_interface_view",
+        },
+    }, None
 
 
 def _youtube_html_results(query: str, max_results: int = 5) -> tuple[list[dict[str, str]], list[str]]:
@@ -351,7 +566,7 @@ def _youtube_html_results(query: str, max_results: int = 5) -> tuple[list[dict[s
     return (results, []) if results else ([], ["youtube html page returned no parseable video ids"])
 
 
-def _youtube_api_results(root: Path, query: str, max_results: int = YOUTUBE_SEARCH_MAX_RESULTS) -> tuple[list[dict[str, str]], list[str]]:
+def _youtube_api_results(root: Path, query: str, max_results: int = YOUTUBE_SEARCH_MAX_RESULTS) -> tuple[list[dict[str, Any]], list[str]]:
     api_key = _youtube_api_key(root)
     if not api_key:
         return [], ["youtube api key not configured"]
@@ -368,11 +583,13 @@ def _youtube_api_results(root: Path, query: str, max_results: int = YOUTUBE_SEAR
     except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
         return [], [f"youtube data api search failed: {exc}"]
     results: list[dict[str, str]] = []
+    video_ids: list[str] = []
     for item in data.get("items", []):
         video_id = item.get("id", {}).get("videoId")
         snippet = item.get("snippet", {})
         if not video_id:
             continue
+        video_ids.append(video_id)
         results.append({
             "url": f"https://www.youtube.com/watch?v={video_id}",
             "title": snippet.get("title") or f"YouTube video candidate for {query}",
@@ -383,7 +600,70 @@ def _youtube_api_results(root: Path, query: str, max_results: int = YOUTUBE_SEAR
             "platform_item_id": video_id,
             "metadata_source": "youtube_data_api_v3_search",
         })
-    return (results, []) if results else ([], ["youtube data api returned no video items"])
+    detail_map, detail_gap = _youtube_api_video_details(root, video_ids)
+    for item in results:
+        detail = detail_map.get(str(item.get("platform_item_id")), {})
+        if detail:
+            item.update({key: value for key, value in detail.items() if value is not None})
+            item["metadata_source"] = "youtube_data_api_v3_search+videos_list"
+    gaps = [detail_gap] if detail_gap else []
+    return (results, gaps) if results else ([], ["youtube data api returned no video items"])
+
+
+def _youtube_api_video_details(root: Path, video_ids: list[str]) -> tuple[dict[str, dict[str, Any]], str | None]:
+    api_key = _youtube_api_key(root)
+    if not api_key or not video_ids:
+        return {}, "youtube videos.list skipped: api key or video ids missing"
+    params = urllib.parse.urlencode({
+        "part": "snippet,contentDetails,statistics",
+        "id": ",".join(video_ids),
+        "key": api_key,
+    })
+    url = f"https://www.googleapis.com/youtube/v3/videos?{params}"
+    try:
+        data = json.loads(_fetch_text(url))
+    except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+        return {}, f"youtube videos.list failed: {exc}"
+    details: dict[str, dict[str, Any]] = {}
+    for item in data.get("items", []):
+        video_id = item.get("id")
+        if not video_id:
+            continue
+        snippet = item.get("snippet", {})
+        stats = item.get("statistics", {})
+        content = item.get("contentDetails", {})
+        details[video_id] = {
+            "title": snippet.get("title"),
+            "author": snippet.get("channelTitle"),
+            "published_at": snippet.get("publishedAt"),
+            "description": snippet.get("description"),
+            "tags": snippet.get("tags", []),
+            "cover_url": max((thumb.get("url") for thumb in snippet.get("thumbnails", {}).values() if thumb.get("url")), default=None),
+            "observed_metrics": {
+                "views": _safe_int(stats.get("viewCount")),
+                "likes": _safe_int(stats.get("likeCount")),
+                "comments": _safe_int(stats.get("commentCount")),
+                "shares": None,
+                "favorites": _safe_int(stats.get("favoriteCount")),
+            },
+            "extra_metadata": {
+                "duration_iso8601": content.get("duration"),
+                "definition": content.get("definition"),
+                "caption": content.get("caption"),
+                "licensed_content": content.get("licensedContent"),
+                "channel_id": snippet.get("channelId"),
+                "category_id": snippet.get("categoryId"),
+                "detail_source": "youtube_videos_list",
+            },
+        }
+    return details, None
+
+
+def _safe_int(value: Any) -> int | None:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
 
 
 def _hard_platform_public_web_probe(platform: str, query: str) -> dict[str, Any]:
@@ -472,15 +752,22 @@ def _live_candidates_for_platform(root: Path, run_id: str, query_plan: dict[str,
             content_type, metadata_source = ("video" if platform in {"bilibili", "youtube"} else "topic_page"), "duckduckgo_lite"
         gaps.extend(result_gaps)
         rejected = 0
+        accepted_for_query = 0
         for result in results:
             if not _result_is_relevant(result, platform):
                 rejected += 1
                 continue
             source = result.get("metadata_source", metadata_source)
-            confidence = 0.66 if source == "youtube_data_api_v3_search" else 0.6 if source == "bilibili_public_web_search_api" else 0.58 if platform == "wiki_official" else 0.5
-            candidates.append(_make_candidate(run_id=run_id, platform=platform, url=result.get("url"), title=result.get("title") or query_text, author=result.get("author"), content_type=content_type, source_type_guess=_source_type_from_url(result.get("url", ""), platform), observed_metrics=result.get("observed_metrics"), published_at=result.get("published_at"), description=result.get("description"), tags=result.get("tags"), cover_url=result.get("cover_url"), platform_item_id=result.get("platform_item_id"), query_used=query_text, evidence_mode="live_metadata", metadata_source=source, live_results_claimed=True, confidence=confidence, requires_review=platform != "wiki_official", notes="Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed."))
+            confidence = 0.7 if source.startswith("youtube_data_api_v3_search+") else 0.66 if source == "youtube_data_api_v3_search" else 0.64 if source.startswith("bilibili_public_web_search_api+") else 0.6 if source == "bilibili_public_web_search_api" else 0.59 if source == "official_reachable_seed" else 0.58 if platform == "wiki_official" else 0.5
+            candidates.append(_make_candidate(run_id=run_id, platform=platform, url=result.get("url"), title=result.get("title") or query_text, author=result.get("author"), content_type=content_type, source_type_guess=_source_type_from_url(result.get("url", ""), platform), observed_metrics=result.get("observed_metrics"), published_at=result.get("published_at"), description=result.get("description"), tags=result.get("tags"), cover_url=result.get("cover_url"), platform_item_id=result.get("platform_item_id"), extra_metadata=result.get("extra_metadata"), query_used=query_text, evidence_mode="live_metadata", metadata_source=source, live_results_claimed=True, confidence=confidence, requires_review=platform != "wiki_official", notes="Metadata-only live scout result. No comments, downloads, screenshots, or platform API data claimed."))
+            accepted_for_query += 1
         if rejected:
             gaps.append(f"rejected {rejected} low-relevance search results")
+        if platform == "search" and accepted_for_query == 0:
+            seed_results, seed_gaps = _reachable_public_seed_results(query_text)
+            gaps.extend(seed_gaps)
+            for result in seed_results:
+                candidates.append(_make_candidate(run_id=run_id, platform=platform, url=result.get("url"), title=result.get("title") or query_text, author=result.get("author"), content_type=content_type, source_type_guess=_source_type_from_url(result.get("url", ""), platform), observed_metrics=result.get("observed_metrics"), published_at=result.get("published_at"), description=result.get("description"), tags=result.get("tags"), cover_url=result.get("cover_url"), platform_item_id=result.get("platform_item_id"), extra_metadata=result.get("extra_metadata"), query_used=query_text, evidence_mode="live_metadata", metadata_source=result.get("metadata_source", "official_reachable_seed"), live_results_claimed=True, confidence=0.59, requires_review=True, notes="Verified public URL fallback for broad source discovery. No platform ranking, comments, downloads, screenshots, or trend validation claimed."))
     return candidates, {"platform": platform, "status": "live_results_found" if candidates else "live_attempt_no_candidates", "live_results_claimed": bool(candidates), "candidate_count": len(candidates), "capability_gaps": gaps}
 
 
@@ -559,6 +846,166 @@ def dedupe_and_rank_candidates(root: str | Path, run_id: str, candidate_ids: lis
     return ranked_ids
 
 
+def _save_cover_asset(conn: Any, root: Path, run_id: str, source_id: str, candidate_file: dict[str, Any], now: str) -> tuple[str | None, str | None, str | None]:
+    cover_url = candidate_file.get("cover_url")
+    if not cover_url:
+        return None, None, "cover_url missing"
+    if not _cover_download_allowed(root):
+        return None, None, "research.download_reference_assets is not allow/allow_with_limits"
+    data, content_type, error = _fetch_image_bytes(str(cover_url))
+    if error or data is None:
+        return None, None, error or "cover image fetch failed"
+    ext_by_type = {"image/jpeg": ".jpg", "image/jpg": ".jpg", "image/png": ".png", "image/webp": ".webp", "image/gif": ".gif"}
+    ext = ext_by_type.get(content_type or "", ".img")
+    asset_id = next_id(conn, "asset")
+    storage_path = root / "research_assets" / "covers" / run_id / f"{source_id}_{asset_id}{ext}"
+    ensure_dir(storage_path.parent)
+    storage_path.write_bytes(data)
+    file_hash = sha256_file(storage_path)
+    image_observation = _image_basic_observation(storage_path)
+    manifest_path = root / "research_assets" / "manifests" / "assets" / f"{asset_id}.json"
+    asset_manifest = {
+        "asset_id": asset_id,
+        "source_id": source_id,
+        "asset_class": "research",
+        "asset_type": "cover_image",
+        "storage_path": rel(root, storage_path),
+        "hash": file_hash,
+        "source_type": candidate_file.get("source_type_guess", "unknown"),
+        "usage_policy": "analysis_only",
+        "review_status": "pending",
+        "metadata": {
+            "source_cover_url": cover_url,
+            "content_type": content_type,
+            "download_mode": "cover_evidence_only",
+            "image_observation": image_observation,
+            "run_id": run_id,
+        },
+        "created_at": now,
+    }
+    write_json(manifest_path, asset_manifest)
+    conn.execute(
+        "INSERT INTO assets VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            asset_id,
+            "research",
+            "cover_image",
+            source_id,
+            None,
+            rel(root, storage_path),
+            file_hash,
+            candidate_file.get("source_type_guess", "unknown"),
+            "analysis_only",
+            "pending",
+            json.dumps(asset_manifest["metadata"], ensure_ascii=False),
+            now,
+            now,
+        ),
+    )
+    return rel(root, storage_path), rel(root, manifest_path), None
+
+
+def _save_page_snapshot(root: Path, run_id: str, source_id: str, candidate_file: dict[str, Any]) -> tuple[str | None, dict[str, Any], str | None]:
+    url = candidate_file.get("url")
+    if not url:
+        return None, {}, "source URL missing"
+    parsed = urllib.parse.urlparse(str(url))
+    if parsed.scheme not in {"http", "https"}:
+        return None, {}, "source URL is not http/https"
+    if not _page_snapshot_allowed(root):
+        return None, {}, "research.collect_metadata is not allow/allow_with_limits"
+    try:
+        html = _fetch_text(str(url))
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        return None, {}, f"page snapshot request failed: {exc}"
+    if not html.strip():
+        return None, {}, "page snapshot response was empty"
+    storage_path = root / "research_assets" / "raw_pages" / run_id / f"{source_id}.html"
+    ensure_dir(storage_path.parent)
+    storage_path.write_text(html, encoding="utf-8")
+    metadata = _extract_page_metadata(html)
+    metadata["snapshot_mode"] = "public_html_metadata_only"
+    metadata["byte_length"] = len(html.encode("utf-8"))
+    metadata["visible_text_snippets"] = _extract_visible_text_snippets(html)
+    return rel(root, storage_path), metadata, None
+
+
+def _save_browser_screenshot(conn: Any, root: Path, run_id: str, source_id: str, candidate_file: dict[str, Any], now: str) -> tuple[str | None, str | None, str | None]:
+    url = candidate_file.get("url")
+    if not url:
+        return None, None, "source URL missing"
+    parsed = urllib.parse.urlparse(str(url))
+    if parsed.scheme not in {"http", "https"}:
+        return None, None, "source URL is not http/https"
+    if not _browser_screenshot_allowed(root):
+        return None, None, "research.browser_screenshot is not allow/allow_with_limits"
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception as exc:
+        return None, None, f"playwright unavailable: {exc}"
+
+    asset_id = next_id(conn, "asset")
+    storage_path = root / "research_assets" / "screenshots" / run_id / f"{source_id}_{asset_id}.png"
+    ensure_dir(storage_path.parent)
+    try:
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=True)
+            page = browser.new_page(viewport={"width": 1280, "height": 720}, locale="en-US")
+            page.goto(str(url), wait_until="domcontentloaded", timeout=12_000)
+            page.screenshot(path=str(storage_path), full_page=False)
+            browser.close()
+    except Exception as exc:
+        try:
+            if storage_path.exists():
+                storage_path.unlink()
+        except OSError:
+            pass
+        return None, None, f"browser screenshot failed: {exc}"
+
+    file_hash = sha256_file(storage_path)
+    image_observation = _image_basic_observation(storage_path)
+    manifest_path = root / "research_assets" / "manifests" / "assets" / f"{asset_id}.json"
+    asset_manifest = {
+        "asset_id": asset_id,
+        "source_id": source_id,
+        "asset_class": "research",
+        "asset_type": "page_screenshot",
+        "storage_path": rel(root, storage_path),
+        "hash": file_hash,
+        "source_type": candidate_file.get("source_type_guess", "unknown"),
+        "usage_policy": "analysis_only",
+        "review_status": "pending",
+        "metadata": {
+            "source_url": url,
+            "screenshot_mode": "public_browser_view_no_login_no_cookies",
+            "viewport": {"width": 1280, "height": 720},
+            "image_observation": image_observation,
+            "run_id": run_id,
+        },
+        "created_at": now,
+    }
+    write_json(manifest_path, asset_manifest)
+    conn.execute(
+        "INSERT INTO assets VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            asset_id,
+            "research",
+            "page_screenshot",
+            source_id,
+            None,
+            rel(root, storage_path),
+            file_hash,
+            candidate_file.get("source_type_guess", "unknown"),
+            "analysis_only",
+            "pending",
+            json.dumps(asset_manifest["metadata"], ensure_ascii=False),
+            now,
+            now,
+        ),
+    )
+    return rel(root, storage_path), rel(root, manifest_path), None
+
+
 def harvest_sources(root: str | Path, run_id: str, candidate_ids: list[str], max_sources: int = 12) -> list[str]:
     base = root_path(root)
     source_ids: list[str] = []
@@ -574,7 +1021,23 @@ def harvest_sources(root: str | Path, run_id: str, candidate_ids: list[str], max
             manifest_path = base / "research_assets" / "manifests" / "sources" / f"{source_id}.json"
             evidence_mode = candidate_file.get("evidence_mode", "unknown")
             harvest_status = "metadata_only_live" if evidence_mode == "live_metadata" else "metadata_only_fixture" if evidence_mode == "fixture" else "metadata_only_manual"
-            files_available = {"metadata": True, "page_snapshot": False, "raw_video": False, "cover": False, "screenshots": False, "comments": False, "transcript": False, "audio_ref": False}
+            cover_path, cover_manifest_path, cover_error = _save_cover_asset(conn, base, run_id, source_id, candidate_file, now)
+            page_snapshot_path, page_snapshot_metadata, page_snapshot_error = _save_page_snapshot(base, run_id, source_id, candidate_file)
+            screenshot_path, screenshot_manifest_path, screenshot_error = _save_browser_screenshot(conn, base, run_id, source_id, candidate_file, now)
+            screenshot_observation = {}
+            if screenshot_manifest_path:
+                try:
+                    screenshot_manifest = read_json(base / screenshot_manifest_path)
+                    screenshot_observation = screenshot_manifest.get("metadata", {}).get("image_observation", {})
+                except (FileNotFoundError, json.JSONDecodeError):
+                    screenshot_observation = {}
+            files_available = {"metadata": True, "page_snapshot": bool(page_snapshot_path), "raw_video": False, "cover": bool(cover_path), "screenshots": bool(screenshot_path), "comments": False, "transcript": False, "audio_ref": False}
+            unavailable_evidence = [name for name, available in files_available.items() if not available]
+            tool_setup_items_needed = ["comment_or_transcript_access", "download_permission"] if evidence_mode == "live_metadata" else []
+            if evidence_mode == "live_metadata" and not page_snapshot_path:
+                tool_setup_items_needed.append("snapshot_or_browser_tool")
+            if evidence_mode == "live_metadata" and not screenshot_path:
+                tool_setup_items_needed.append("browser_screenshot_tool")
             manifest = {
                 "source_id": source_id,
                 "candidate_source_id": candidate_id,
@@ -595,10 +1058,15 @@ def harvest_sources(root: str | Path, run_id: str, candidate_ids: list[str], max
                 "fixture": evidence_mode == "fixture",
                 "requires_review": bool(candidate_file.get("requires_review", review_status == "pending")),
                 "files_available": files_available,
-                "files": {"metadata": rel(base, _run_dir(base, run_id, "source_candidates", f"{candidate_id}.json")), "page_snapshot": None, "raw_video": None, "cover": None, "screenshots": [], "comments": None, "transcript": None, "audio_ref": None},
-                "unavailable_evidence": [name for name, available in files_available.items() if not available],
-                "tool_setup_items_needed": ["snapshot_or_browser_tool", "comment_or_transcript_access", "download_permission"] if evidence_mode == "live_metadata" else [],
-                "provenance": {"source_url": candidate["url"], "platform": candidate["platform"], "collected_at": now, "query_used": candidate_file.get("query_used"), "metadata_source": candidate_file.get("metadata_source"), "used_by_run": run_id, "what_was_saved": ["structured_metadata"], "why_saved": "P1 source intelligence metadata harvest."},
+                "files": {"metadata": rel(base, _run_dir(base, run_id, "source_candidates", f"{candidate_id}.json")), "page_snapshot": page_snapshot_path, "raw_video": None, "cover": cover_path, "cover_manifest": cover_manifest_path, "screenshots": [screenshot_path] if screenshot_path else [], "screenshot_manifests": [screenshot_manifest_path] if screenshot_manifest_path else [], "comments": None, "transcript": None, "audio_ref": None},
+                "unavailable_evidence": unavailable_evidence,
+                "tool_setup_items_needed": tool_setup_items_needed,
+                "cover_evidence_error": cover_error,
+                "page_snapshot_error": page_snapshot_error,
+                "screenshot_error": screenshot_error,
+                "screenshot_observation": screenshot_observation,
+                "page_snapshot_metadata": page_snapshot_metadata,
+                "provenance": {"source_url": candidate["url"], "platform": candidate["platform"], "collected_at": now, "query_used": candidate_file.get("query_used"), "metadata_source": candidate_file.get("metadata_source"), "used_by_run": run_id, "what_was_saved": ["structured_metadata"] + (["cover_image"] if cover_path else []) + (["public_html_snapshot"] if page_snapshot_path else []) + (["public_browser_screenshot"] if screenshot_path else []), "why_saved": "P1 source intelligence metadata harvest."},
                 "notes": candidate_file.get("notes") or "Metadata-only harvest. No unavailable evidence is claimed.",
                 "created_at": now,
             }
@@ -609,8 +1077,8 @@ def harvest_sources(root: str | Path, run_id: str, candidate_ids: list[str], max
             source_ids.append(source_id)
         conn.commit()
     if live_evidence_upgrade_needed:
-        create_tool_setup_item(base, "p1_harvester_evidence_upgrade", ["page snapshot/screenshot/comment/transcript tooling not configured"], "P1 harvested live metadata but richer evidence remains unavailable.", priority="low")
-    write_json(_run_dir(base, run_id, "harvested_sources", "harvest_report.json"), {"source_ids": source_ids, "harvest_status": "metadata_only", "created_at": now})
+        create_tool_setup_item(base, "p1_harvester_evidence_upgrade", ["browser screenshot/comment/transcript tooling may be unavailable; public HTML snapshot may still be partial or blocked"], "P1 harvested live metadata but richer evidence remains unavailable.", priority="low")
+    write_json(_run_dir(base, run_id, "harvested_sources", "harvest_report.json"), {"source_ids": source_ids, "harvest_status": "metadata_plus_optional_page_snapshot_and_screenshot", "created_at": now})
     write_decision(base, run_id, None, "p1_harvest", "harvest_metadata_sources", "Harvested metadata-only sources with provenance and explicit unavailable evidence fields.", {"source_count": len(source_ids)})
     return source_ids
 
@@ -622,15 +1090,40 @@ def build_evidence_observations(root: str | Path, run_id: str, source_ids: list[
         for source_id in source_ids:
             source = fetch_one(conn, "sources", "source_id", source_id)
             candidate_file = read_json(_run_dir(base, run_id, "source_candidates", f"{source['candidate_source_id']}.json"))
+            source_manifest = read_json(base / source["manifest_path"])
             evidence_id = next_id(conn, "evidenceobs")
             available_inputs = ["url", "title", "platform", "metadata_source"]
             for field in ("author", "published_at", "description", "cover_url", "observed_metrics", "tags"):
                 value = candidate_file.get(field)
                 if value:
                     available_inputs.append(field)
-            missing_inputs = ["page_screenshot", "video_frames", "transcript", "comments", "audio_metadata", "full_video_content"]
+            if candidate_file.get("extra_metadata"):
+                available_inputs.append("extra_metadata")
+            cover_file = source_manifest.get("files", {}).get("cover")
+            if cover_file:
+                available_inputs.append("cover_file")
+            page_snapshot_file = source_manifest.get("files", {}).get("page_snapshot")
+            page_snapshot_metadata = source_manifest.get("page_snapshot_metadata", {})
+            if page_snapshot_file:
+                available_inputs.append("page_snapshot_file")
+            if page_snapshot_metadata:
+                available_inputs.append("page_metadata")
+            screenshot_files = source_manifest.get("files", {}).get("screenshots", [])
+            page_screenshot_file = screenshot_files[0] if screenshot_files else None
+            screenshot_observation = source_manifest.get("screenshot_observation", {})
+            if page_screenshot_file:
+                available_inputs.append("page_screenshot_file")
+            if screenshot_observation:
+                available_inputs.append("screenshot_basic_observation")
+            missing_inputs = ["video_frames", "transcript", "comments", "audio_metadata", "full_video_content"]
+            if not page_screenshot_file:
+                missing_inputs.append("page_screenshot")
             if not candidate_file.get("cover_url"):
                 missing_inputs.append("cover_image_url")
+            if not cover_file:
+                missing_inputs.append("cover_file")
+            if not page_snapshot_file:
+                missing_inputs.append("page_snapshot_file")
             observation = {
                 "evidence_observation_id": evidence_id,
                 "run_id": run_id,
@@ -649,18 +1142,24 @@ def build_evidence_observations(root: str | Path, run_id: str, source_ids: list[
                     "tags": candidate_file.get("tags", []),
                     "author": candidate_file.get("author"),
                     "published_at": candidate_file.get("published_at"),
+                    "page_metadata": page_snapshot_metadata,
+                    "page_visible_text_snippets": page_snapshot_metadata.get("visible_text_snippets", []) if isinstance(page_snapshot_metadata, dict) else [],
                 },
                 "observed_visual": {
                     "cover_url": candidate_file.get("cover_url"),
-                    "page_screenshot": None,
+                    "cover_file": cover_file,
+                    "page_snapshot_file": page_snapshot_file,
+                    "page_screenshot": page_screenshot_file,
+                    "screenshot_observation": screenshot_observation,
                     "frame_samples": [],
                 },
                 "observed_metrics": candidate_file.get("observed_metrics", {}),
+                "extra_metadata": candidate_file.get("extra_metadata", {}),
                 "platform_item_id": candidate_file.get("platform_item_id"),
-                "content_visibility": "metadata_and_cover_url_only" if candidate_file.get("cover_url") else "metadata_only",
+                "content_visibility": "metadata_cover_public_html_and_public_screenshot" if cover_file and page_snapshot_file and page_screenshot_file else "metadata_public_html_and_public_screenshot" if page_snapshot_file and page_screenshot_file else "metadata_cover_and_public_html_snapshot" if cover_file and page_snapshot_file else "metadata_and_public_html_snapshot" if page_snapshot_file else "metadata_and_cover_file" if cover_file else "metadata_and_cover_url_only" if candidate_file.get("cover_url") else "metadata_only",
                 "understanding_limits": [
                     "No full video viewing is claimed.",
-                    "No comments, danmaku, transcript, audio, screenshot, or downloaded media are claimed.",
+                    "No comments, danmaku, transcript, audio, video frames, or downloaded video media are claimed.",
                     "Format inference must remain weak until richer evidence exists.",
                 ],
                 "next_evidence_needed": ["page screenshot", "cover/image inspection", "transcript/captions if available", "short manual/browser viewing note"],
@@ -685,17 +1184,23 @@ def build_understanding_reports(root: str | Path, run_id: str, source_ids: list[
             observed_text = evidence.get("observed_text", {})
             title = observed_text.get("title") or str(source["url"])
             description = observed_text.get("description") or ""
+            page_metadata = observed_text.get("page_metadata", {}) if isinstance(observed_text.get("page_metadata"), dict) else {}
+            page_meta = page_metadata.get("meta", {}) if isinstance(page_metadata.get("meta"), dict) else {}
+            page_open_graph = page_metadata.get("open_graph", {}) if isinstance(page_metadata.get("open_graph"), dict) else {}
+            page_meta_description = page_meta.get("description")
+            page_og_title = page_open_graph.get("og:title")
+            page_visible_text = observed_text.get("page_visible_text_snippets", []) if isinstance(observed_text.get("page_visible_text_snippets"), list) else []
             title_terms = [term for term in re.split(r"[\s/_#|:：,，。！!]+", title) if term]
-            description_terms = [term for term in re.split(r"[\s/_#|:：,，。！!]+", description) if term][:20]
-            has_richer_metadata = bool(description or evidence.get("observed_visual", {}).get("cover_url"))
+            description_terms = [term for term in re.split(r"[\s/_#|:：,，。！!]+", " ".join(filter(None, [description, page_meta_description or ""]))) if term][:24]
+            has_richer_metadata = bool(description or page_meta_description or page_visible_text or evidence.get("observed_visual", {}).get("cover_url"))
             report = {
                 "understanding_report_id": report_id,
                 "source_id": source_id,
                 "evidence_observation_id": evidence_id,
                 "summary": f"Evidence-limited understanding for {source['platform']} source: {title}",
                 "content_type_guess": ["ordinary_ai_video_format_candidate", source["content_type"]],
-                "text_signals": {"title_keywords": title_terms, "description_keywords": description_terms, "visible_text": [title] + ([description] if description else []), "transcript_summary": None},
-                "visual_signals": {"style_guess": "unknown_until_cover_or_frames_are_inspected", "subject_guess": "unknown_until_cover_or_frames_are_inspected", "subtitle_style_guess": "unknown_until_screenshot_or_frames", "ai_generated_likelihood": None, "cover_url": evidence.get("observed_visual", {}).get("cover_url")},
+                "text_signals": {"title_keywords": title_terms, "description_keywords": description_terms, "visible_text": [text for text in [title, description, page_og_title, page_meta_description] if text] + page_visible_text[:8], "page_metadata_title": page_metadata.get("title"), "transcript_summary": None},
+                "visual_signals": {"style_guess": "unknown_until_image_or_frames_are_inspected", "subject_guess": "unknown_until_image_or_frames_are_inspected", "subtitle_style_guess": "unknown_until_screenshot_or_frames_are_inspected", "ai_generated_likelihood": None, "cover_url": evidence.get("observed_visual", {}).get("cover_url"), "cover_file": evidence.get("observed_visual", {}).get("cover_file"), "page_screenshot": evidence.get("observed_visual", {}).get("page_screenshot"), "screenshot_basic_observation": evidence.get("observed_visual", {}).get("screenshot_observation", {})},
                 "audio_signals": {"has_music": None, "music_or_sound_role": "unknown_from_metadata_only", "beat_or_hook_notes": []},
                 "story_or_format_clues": {"roles": ["unknown_from_metadata_only"], "beats": [], "hook": "title/description may suggest a topic hook; video structure is not viewed yet", "punchline": None, "repeatable_parts": ["topic angle only"] if has_richer_metadata else []},
                 "confidence": 0.52 if source["harvest_status"] == "metadata_only_live" and has_richer_metadata else 0.46 if source["harvest_status"] == "metadata_only_live" else 0.38,
@@ -734,7 +1239,7 @@ def write_research_review_report(root: str | Path, run_id: str, query_plan: dict
     live_count = scout_report.get("live_candidate_count", 0)
     fixture_count = scout_report.get("fixture_candidate_count", 0)
     report_json = {"run_id": run_id, "goal": query_plan["goal"], "query_plan_id": query_plan["query_plan_id"], "candidate_count": len(candidate_ids), "source_count": len(source_ids), "evidence_observation_count": len(evidence_observation_ids), "evidence_observation_ids": evidence_observation_ids, "format_observation_ids": observation_ids, "opportunity_ids": opportunity_ids, "live_results_claimed": bool(scout_report.get("live_results_claimed")), "live_candidate_count": live_count, "fixture_candidate_count": fixture_count, "mode": scout_report.get("scout_mode"), "created_at": utc_now()}
-    live_note = "本次存在 live metadata candidates；它们只代表真实页面搜索/metadata 级发现，不代表已抓取标题细节、评论、截图、下载或趋势验证。" if live_count else "本次没有 live candidate，说明真实搜索未获准、网络不可用、页面不可解析，或平台能力仍缺失；系统已记录 ToolSetupItem，而不是伪造结果。"
+    live_note = "本次存在 live metadata candidates；它们只代表真实页面搜索/API/public metadata 级发现、允许范围内的轻量封面证据、公开 HTML page snapshot 和无登录公开浏览器截图，不代表已观看视频正文、抓取评论/弹幕、下载视频、读取登录态推荐流或完成趋势验证。" if live_count else "本次没有 live candidate，说明真实搜索未获准、网络不可用、页面不可解析，或平台能力仍缺失；系统已记录 ToolSetupItem，而不是伪造结果。"
     md = f"""# P1 研究复盘报告 / Research Review Report
 
 Run: `{run_id}`
@@ -744,9 +1249,9 @@ Run: `{run_id}`
 
 - 生成自主 query plan。
 - 运行 P1 scout mode: `{scout_report.get('scout_mode')}`。
-- Broad web / Wiki / YouTube / Bilibili 只采集 metadata/search-result/API metadata 级候选；不会声称评论、下载、截图或未标明来源的结果。
+- Broad web / Wiki / YouTube / Bilibili 只采集 metadata/search-result/API metadata 级候选、允许范围内的小封面证据、公开 HTML page snapshot 和无登录公开浏览器截图；不会声称评论/弹幕、视频下载、登录态推荐流或未标明来源的结果。
 - Douyin / Xiaohongshu 只做 capability probe 和 ToolSetupItem，不假装全自动抓取。
-- Harvester 生成 metadata-only source manifest，并明确记录 fixture / live / manual 模式。
+- Harvester 生成 source manifest，并明确记录 fixture / live / manual 模式以及实际可用/缺失的 evidence。
 - 生成 Understanding Reports、weak Format Observation 和 TrendOpportunityPacket。
 
 ## 数量
@@ -765,14 +1270,14 @@ Run: `{run_id}`
 
 {live_note}
 
-当前 opportunity 仍标为 `weak_observation`，不能当作完整热点判断或 P1 全量验收通过。
+当前 opportunity 仍标为 `weak_observation`，不能当作完整热点判断。P1 的验收边界是公共 metadata/evidence scout foundation；它不包含平台深内容、登录态推荐流、评论/弹幕、字幕、音频或视频正文理解。
 
 ## 建议下一步
 
-1. 如果要真实 broad web search，把 `research.web_search` 设为 `allow_with_limits`，或用 `--scout-mode live` 明确尝试。
-2. 给 YouTube/Bilibili 配置稳定 metadata/API/浏览器路径后重跑。
-3. Douyin/Xiaohongshu 需要登录/API/cookie/浏览器自动化前，仍只允许 probe 或手动入口。
-4. 只有当真实证据足够强，才把 opportunity 交给 P0-B 开生产 job。
+1. 如果继续增强 P1，只能进入字幕/transcript、评论/弹幕、视频帧/音频或登录态浏览等更高权限能力。
+2. Douyin/Xiaohongshu 需要登录/API/cookie/浏览器辅助前，仍只允许 probe 或手动入口。
+3. 只有当具体 opportunity 证据足够强，才把它交给 P0-B 开生产 job。
+4. 不要把 public metadata P1 acceptance 误报成平台全自动深内容采集完成。
 """
     write_json(report_dir / "research_review.json", report_json)
     write_human_text(report_dir / "research_review.md", md)
@@ -786,6 +1291,14 @@ def run_p1_self_check(root: str | Path, run_id: str) -> dict[str, Any]:
     run_root = _run_dir(base, run_id)
     required = {"query_plan": run_root / "query_plans", "scout_report": run_root / "scout_results" / "scout_report.json", "source_candidates": run_root / "source_candidates", "harvest_report": run_root / "harvested_sources" / "harvest_report.json", "evidence_observations": run_root / "evidence_observations", "understanding_reports": run_root / "understanding_reports", "format_observations": run_root / "format_observations", "opportunity_packets": run_root / "opportunity_packets", "research_review": run_root / "reports" / "research_review.md"}
     checks = []
+    acceptance_summary: dict[str, Any] = {
+        "scope": "confirmed",
+        "skeleton": "implemented_and_verified",
+        "live_capability": "not_evaluated",
+        "acceptance": "not_evaluated",
+        "public_metadata_acceptance": False,
+        "known_gaps": [],
+    }
     for name, path in required.items():
         exists = path.exists() and (not path.is_dir() or any(path.iterdir()))
         checks.append({"name": name, "path": rel(base, path), "ok": exists, "message": "exists" if exists else "missing"})
@@ -793,33 +1306,62 @@ def run_p1_self_check(root: str | Path, run_id: str) -> dict[str, Any]:
     if scout_report_path.exists():
         scout_report = read_json(scout_report_path)
         live_count = int(scout_report.get("live_candidate_count", 0))
+        fixture_count = int(scout_report.get("fixture_candidate_count", 0))
+        scout_results = scout_report.get("scout_results", [])
+        live_platform_status = {item.get("platform"): item.get("status") for item in scout_results if item.get("platform") in P1_LIVE_SCOUTS}
+        public_live_ready = all(live_platform_status.get(platform) == "live_results_found" for platform in P1_LIVE_SCOUTS)
+        public_live_required = bool(scout_report.get("live_results_claimed")) and fixture_count == 0
         checks.append({"name": "live_claim_matches_candidates", "ok": bool(scout_report.get("live_results_claimed")) == (live_count > 0), "message": "live_results_claimed must only be true when live candidates exist"})
         checks.append({"name": "live_capability_status", "ok": live_count > 0 or int(scout_report.get("fixture_candidate_count", 0)) > 0, "message": "P1 must either produce live candidates or honest fixture fallback candidates"})
+        checks.append({"name": "public_live_scout_coverage", "ok": public_live_ready or not public_live_required, "message": f"live scout statuses: {live_platform_status}"})
         for platform in P1_CAPABILITY_PROBES:
-            probe = next((item for item in scout_report.get("scout_results", []) if item.get("platform") == platform), None)
+            probe = next((item for item in scout_results if item.get("platform") == platform), None)
             checks.append({"name": f"{platform}_probe_only", "ok": bool(probe and probe.get("status") == "probe_only" and probe.get("live_results_claimed") is False), "message": f"{platform} must remain probe-only without login/API/browser setup"})
+        acceptance_summary["live_capability"] = "public_metadata_live_scouts_connected" if public_live_ready else "partial_public_metadata_live_scouts"
+        acceptance_summary["known_gaps"] = ["douyin_xhs_probe_only_without_login_or_api", "no_comments_or_danmaku", "no_transcript_or_audio_analysis", "no_video_frame_sampling_or_download", "no_logged_in_recommendation_context"]
     for candidate_path in (run_root / "source_candidates").glob("sourcecand_*.json"):
         item = read_json(candidate_path)
-        required_fields = ["candidate_source_id", "platform", "url", "title", "author", "published_at", "description", "tags", "cover_url", "platform_item_id", "collected_at", "query_used", "evidence_mode", "metadata_source", "live_results_claimed", "confidence", "capability_gaps", "requires_review", "notes"]
+        required_fields = ["candidate_source_id", "platform", "url", "title", "author", "published_at", "description", "tags", "cover_url", "platform_item_id", "extra_metadata", "collected_at", "query_used", "evidence_mode", "metadata_source", "live_results_claimed", "confidence", "capability_gaps", "requires_review", "notes"]
         missing = [field for field in required_fields if field not in item]
         checks.append({"name": f"candidate_schema_{candidate_path.stem}", "ok": not missing, "message": "missing fields: " + ", ".join(missing) if missing else "schema ok"})
         if item.get("evidence_mode") == "fixture":
             checks.append({"name": f"fixture_not_live_{candidate_path.stem}", "ok": item.get("live_results_claimed") is False, "message": "fixture candidates must not claim live results"})
     for evidence_path in (run_root / "evidence_observations").glob("evidenceobs_*.json"):
         item = read_json(evidence_path)
-        required_fields = ["evidence_observation_id", "source_id", "candidate_source_id", "available_inputs", "missing_inputs", "observed_text", "observed_visual", "understanding_limits", "next_evidence_needed"]
+        required_fields = ["evidence_observation_id", "source_id", "candidate_source_id", "available_inputs", "missing_inputs", "observed_text", "observed_visual", "observed_metrics", "extra_metadata", "understanding_limits", "next_evidence_needed"]
         missing = [field for field in required_fields if field not in item]
         checks.append({"name": f"evidence_schema_{evidence_path.stem}", "ok": not missing, "message": "missing fields: " + ", ".join(missing) if missing else "schema ok"})
         checks.append({"name": f"evidence_no_full_video_claim_{evidence_path.stem}", "ok": "full_video_content" in item.get("missing_inputs", []), "message": "P1 evidence observation must not imply full video content was viewed"})
     failed = [item for item in checks if not item["ok"]]
-    report = {"run_id": run_id, "status": "pass" if not failed else "fail", "failed_count": len(failed), "checks": checks, "checked_at": utc_now()}
+    evidence_files = list((run_root / "evidence_observations").glob("evidenceobs_*.json"))
+    evidence_items = [read_json(path) for path in evidence_files]
+    evidence_ready = bool(evidence_items) and all("full_video_content" in item.get("missing_inputs", []) for item in evidence_items)
+    screenshot_ready = bool(evidence_items) and all("page_screenshot_file" in item.get("available_inputs", []) for item in evidence_items if item.get("evidence_mode") == "live_metadata")
+    acceptance_summary["public_metadata_acceptance"] = not failed and acceptance_summary["live_capability"] == "public_metadata_live_scouts_connected" and evidence_ready
+    acceptance_summary["acceptance"] = "public_metadata_p1_acceptance_complete_with_declared_gaps" if acceptance_summary["public_metadata_acceptance"] else "partial"
+    acceptance_summary["evidence_readiness"] = {
+        "evidence_observation_count": len(evidence_items),
+        "all_observations_keep_full_video_missing": evidence_ready,
+        "live_sources_have_public_screenshot": screenshot_ready,
+    }
+    report = {"run_id": run_id, "status": "pass" if not failed else "fail", "failed_count": len(failed), "acceptance_summary": acceptance_summary, "checks": checks, "checked_at": utc_now()}
     write_json(run_root / "reports" / "p1_self_check_report.json", report)
     failed_lines = "\n".join(f"- `{item['name']}`: {item['message']}" for item in failed) or "- None"
+    acceptance_lines = "\n".join(f"- `{key}`: `{value}`" for key, value in acceptance_summary.items() if key != "known_gaps")
+    known_gap_lines = "\n".join(f"- `{gap}`" for gap in acceptance_summary["known_gaps"]) or "- None"
     write_human_text(run_root / "reports" / "p1_self_check_report.md", f"""# P1 自检报告 / Self-Check Report
 
 Run: `{run_id}`
 Status: `{report['status']}`
 Failed checks: `{len(failed)}`
+
+## Acceptance Summary
+
+{acceptance_lines}
+
+## Known Gaps
+
+{known_gap_lines}
 
 ## Failed Checks
 
@@ -827,7 +1369,7 @@ Failed checks: `{len(failed)}`
 
 ## Meaning
 
-这个 self-check 验证 P1 research pipeline 的结构完整性、候选 schema、fixture/live 诚实性，以及 Douyin/XHS 仍为 probe-only。通过不代表完整 P1 验收完成。
+这个 self-check 验证 P1 research pipeline 的结构完整性、候选 schema、fixture/live 诚实性、公共 metadata/evidence 验收，以及 Douyin/XHS 仍为 probe-only。`public_metadata_p1_acceptance_complete_with_declared_gaps` 不等于平台全自动深内容采集完成。
 """)
     return report
 
